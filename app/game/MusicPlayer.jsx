@@ -11,7 +11,6 @@ const MusicPlayer = ({ currentSongUrl }) => {
     // https://www.youtube.com/watch?v=sqpg1qzJCGQ
 
     const [isPlaying, setIsPlaying] = useState(false)
-    const [duration, setDuration] = useState(16)
     const [currentDisplayTime, setCurrentDisplayTime] = useState(0)
     
     const [stage, setStage] = useAtom(stageAtom)
@@ -19,22 +18,22 @@ const MusicPlayer = ({ currentSongUrl }) => {
     const stageSeconds = [1, 2, 4, 7, 11, 16]
     const secondsToPlay = stageSeconds[stage - 1]
 
+    const stagePercentages = [6.25, 12.5, 25, 43.75, 68.75, 100]
+    const unlockedStagePercentage = stagePercentages[stage - 1]
+
+    const [progressWidth, setProgressWidth] = useState(0)
+
     const audio = useRef()
-    const progressBar = useRef()
     const animation = useRef()
 
     const stopAtCurrentStage = () => {
-        if (audio.current.currentTime >= secondsToPlay) {
+        audio.current.pause()
+        cancelAnimationFrame(animation.current)
+        setIsPlaying(false)
 
-            audio.current.pause()
-            cancelAnimationFrame(animation.current)
-            setIsPlaying(false)
-
-            progressBar.current.value = 0
-            updateProgressBar()
-
-            audio.current.currentTime = 0
-        }
+        setProgressWidth(0)
+        audio.current.currentTime = 0
+        setCurrentDisplayTime(0)
     }
 
     const calculateTime = (secs) => {
@@ -58,20 +57,18 @@ const MusicPlayer = ({ currentSongUrl }) => {
         }
     }
 
-    const updateProgressBar = () => {
-        progressBar.current.style.setProperty('--duration-width', `${progressBar.current.value / duration * 100}%`)
-        setCurrentDisplayTime(progressBar.current.value)
-    }
-
     const updateProgressBarWhilePlaying = () => {
-        progressBar.current.value = audio.current.currentTime
-        updateProgressBar()
-        animation.current = requestAnimationFrame(updateProgressBarWhilePlaying)
-    }
+        const newWidth = Math.floor((audio.current.currentTime * 100) / secondsToPlay)
 
-    const changeTimeWithProgressBar = () => {
-        audio.current.currentTime = progressBar.current.value
-        updateProgressBar()
+        setCurrentDisplayTime(audio.current.currentTime)
+        setProgressWidth(newWidth)        
+
+        if (audio.current.currentTime >= secondsToPlay) {
+            stopAtCurrentStage()
+            return
+        }
+
+        animation.current = requestAnimationFrame(updateProgressBarWhilePlaying)
     }
 
     return (
@@ -81,11 +78,7 @@ const MusicPlayer = ({ currentSongUrl }) => {
                 onClick={() => setStage(prev => prev + 1)}
             >Skip (+{stage}s)</button>
             <div className="music-player">
-                <audio
-                    ref={audio}
-                    src={currentSongUrl}
-                    onTimeUpdate={stopAtCurrentStage}
-                ></audio>
+                <audio ref={audio} src={currentSongUrl}></audio>
                 <button className="music-player__button" onClick={togglePlayPause}>
                     {isPlaying ? (
                         <Image src={pauseIcon} alt="pause"></Image>
@@ -95,14 +88,18 @@ const MusicPlayer = ({ currentSongUrl }) => {
                 </button>
                 <div className="progress">
                     <div className="progress__current">{calculateTime(currentDisplayTime)}</div>
-                    <input
-                        ref={progressBar}
-                        className="progress__bar"
-                        type="range"
-                        defaultValue="0"
-                        max={16}
-                        onChange={changeTimeWithProgressBar}
-                        />
+                    <div className="bar">
+                        <div className="bar__back">
+                            <div className="bar__line"></div>
+                            <div className="bar__line"></div>
+                            <div className="bar__line"></div>
+                            <div className="bar__line"></div>
+                            <div className="bar__line"></div>
+                        </div>
+                        <div className="bar__unlocked" style={{ width: `${unlockedStagePercentage}%` }}>
+                            <div className="bar__current" style={{ width: `${progressWidth}%` }}></div>
+                        </div>
+                    </div>
                     <div className="progress__duration">00:16</div>
                 </div>
             </div>
