@@ -1,0 +1,121 @@
+.music-player {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+}
+
+.music-player__button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 3rem;
+    width: 3rem;
+    margin: 0;
+    padding: 0;
+    background-color: var(--color-secondary);
+}
+
+.progress {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+}
+
+.progress__bar {
+    --bar-color: var(--color-primary-700);
+    --bar-height: 4px;
+    --bar-width: 32rem;
+    --duration-width: 0;
+    --duration-color: var(--color-accent);
+    --knob-color: var(--color-secondary);
+    --knob-color-selected: var(--color-secondary);
+    --knob-size: 10px;
+  
+    appearance: none;
+    position: relative;
+    max-width: var(--bar-width);
+    width: 100%;
+    height: var(--bar-height);
+    border-radius: 50vh;
+    background: var(--bar-color);
+    outline: none;
+    cursor: pointer;
+}
+  
+/* progress bar - safari & firefox */
+.progress__bar::-webkit-slider-runnable-track,
+.progress__bar::-moz-range-track {
+    position: relative;
+    max-width: var(--bar-width);
+    width: 100%;
+    height: var(--bar-height);
+    border-radius: 50vh;
+    background: var(--bar-color);
+    outline: none;
+    cursor: pointer;
+}
+
+.progress__bar::-moz-focus-outer {
+    border: 0;
+}
+
+/* progress bar duration - chrome and safari */
+.progress__bar::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    width: var(--duration-width);
+    height: var(--bar-height);
+    border-radius: 50vh 0 0 50vh;
+    background-color: var(--duration-color);
+}
+
+/* progress bar duration - firefox */
+.progress__bar::-moz-range-progress {
+    height: var(--bar-height);
+    border-radius: 50vh 0 0 50vh;
+    background-color: var(--duration-color);
+}
+
+/* knob - chrome and safari */
+.progress__bar::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    position: relative;
+    z-index: 3;
+    width: var(--knob-size);
+    height: var(--knob-size);
+    border: none;
+    border-radius: 50%;
+    background-color: var(--knob-color);
+    cursor: pointer;
+}
+
+/* knob while dragging - chrome and safari */
+.progress__bar:active::-webkit-slider-thumb {
+    background: var(--knob-color-selected);
+    transform: scale(1.2);
+}
+
+/* knob - firefox */
+.progress__bar::-moz-range-thumb {
+    position: relative;
+    z-index: 3;
+    width: var(--knob-size);
+    height: var(--knob-size);
+    border: transparent;
+    border-radius: 50%;
+    background-color: var(--knob-color);
+    cursor: pointer;
+}
+
+/* knob while dragging - firefox */
+.progress__bar:active::-moz-range-thumb {
+    background: var(--knob-color-selected);
+    transform: scale(1.2);
+}

@@ -1,0 +1,13 @@
+button, .button {
+    padding: 1rem 2rem;
+    border-radius: 50vh;
+    background-color: var(--color-secondary);
+    color: var(--color-primary-900);
+}
+
+.button--outline {
+    padding: calc(1rem - 2px) calc(2rem - 2px);
+    background: none;
+    color: var(--color-secondary);
+    border: 2px solid var(--color-secondary);
+}

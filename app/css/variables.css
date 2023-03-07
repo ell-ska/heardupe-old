@@ -1,0 +1,24 @@
+:root {
+    --grid-container: clamp(1.5rem, -4.662rem + 26.2911vw, 19rem) minmax(0, 54rem) clamp(1.5rem, -4.662rem + 26.2911vw, 19rem);
+
+    --color-primary-900: #181818;
+    --color-primary-800: #2A2A2A;
+    --color-primary-700: #5E5E5E;
+    --color-primary-500: #BABABA;
+    --color-secondary: #FFF;
+    --color-accent: #1ED760;
+
+    --font-primary: "Lexend", sans-serif;
+    --font-branding: "Climate Crisis", "Lexend", sans-serif;
+    --font-base: 16px;
+    --font-scale: 1.25;
+    --font-size-0: calc(var(--font-base) / var(--font-scale));
+    --font-size-1: var(--font-base);
+    --font-size-2: calc(var(--font-size-1) * var(--font-scale));
+    --font-size-3: calc(var(--font-size-2) * var(--font-scale));
+    --font-size-4: calc(var(--font-size-3) * var(--font-scale));
+    --font-size-5: calc(var(--font-size-4) * var(--font-scale));
+    --font-size-6: calc(var(--font-size-5) * var(--font-scale));
+    --font-weight-regular: 400;
+    --font-weight-bold: 700;
+}

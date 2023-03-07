@@ -1,0 +1,4 @@
+.footer {
+    min-height: 1.5rem;
+    background-color: var(--color-accent);
+}

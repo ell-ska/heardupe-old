@@ -1,0 +1,40 @@
+/* Typography */
+@import url('https://fonts.googleapis.com/css2?family=Climate+Crisis&family=Lexend:wght@400;700&display=swap');
+
+/* Resets */
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    background-color: var(--color-primary-900);
+    color: var(--color-secondary);
+    font-family: var(--font-primary);
+}
+
+img, svg {
+    display: block;
+    max-width: 100%;
+}
+
+input, button, textarea, select, a {
+    font: inherit;
+    color: inherit;
+    text-decoration: none;
+}
+
+button {
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}

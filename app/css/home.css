@@ -1,0 +1,14 @@
+.gallery {
+    margin-top: 2rem;
+    flex: 1 0 auto;
+    display: grid;
+    grid-template-columns: var(--grid-container);
+}
+
+.gallery__inner {
+    grid-column: 2;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    align-content: start;
+    gap: 2rem;
+}

@@ -1,0 +1,10 @@
+.search {
+    flex: 1 0 auto;
+    display: grid;
+    grid-template-columns: var(--grid-container);
+    margin-top: 2rem;
+}
+
+.search__inner {
+    grid-column: 2;
+}
