@@ -2,7 +2,7 @@
 import { useRef, useState } from "react"
 import Image from "next/image"
 import { useAtom } from "jotai"
-import { stageAtom } from "./gameAtoms"
+import { gameOverAtom, stageAtom } from "./gameAtoms"
 import playIcon from "../../public/play.svg"
 import pauseIcon from "../../public/pause.svg"
 import './music-player.css'
@@ -10,16 +10,18 @@ import './music-player.css'
 const MusicPlayer = ({ currentSongUrl }) => {
     // https://www.youtube.com/watch?v=sqpg1qzJCGQ
 
+    const [gameOver, setGameOver] = useAtom(gameOverAtom)
+
     const [isPlaying, setIsPlaying] = useState(false)
     const [currentDisplayTime, setCurrentDisplayTime] = useState(0)
     
     const [stage, setStage] = useAtom(stageAtom)
 
     const stageSeconds = [1, 2, 4, 7, 11, 16]
-    const secondsToPlay = stageSeconds[stage - 1]
+    const secondsToPlay = gameOver ? stageSeconds.at(-1) : stageSeconds[stage - 1]
 
     const stagePercentages = [6.25, 12.5, 25, 43.75, 68.75, 100]
-    const unlockedStagePercentage = stagePercentages[stage - 1]
+    const unlockedStagePercentage = gameOver ? stagePercentages.at(-1) : stagePercentages[stage - 1]
 
     const [progressWidth, setProgressWidth] = useState(0)
 
@@ -73,34 +75,40 @@ const MusicPlayer = ({ currentSongUrl }) => {
 
     return (
         <div className="game-footer">
-            <button
-                className='button'
-                onClick={() => setStage(prev => prev + 1)}
-            >Skip (+{stage}s)</button>
+            {gameOver ? (
+                <button className="button">Listen on Spotify</button>
+            ) : (
+                <button
+                    className='button'
+                    onClick={() => setStage(prev => prev + 1)}
+                >Skip (+{stage}s)</button>
+            )}
             <div className="music-player">
-                <audio ref={audio} src={currentSongUrl}></audio>
-                <button className="music-player__button" onClick={togglePlayPause}>
-                    {isPlaying ? (
-                        <Image src={pauseIcon} alt="pause"></Image>
-                    ) : (
-                        <Image src={playIcon} alt="play" style={{marginLeft: '3px'}}></Image>
-                    )}
-                </button>
-                <div className="progress">
-                    <div className="progress__current">{calculateTime(currentDisplayTime)}</div>
-                    <div className="bar">
-                        <div className="bar__back">
-                            <div className="bar__line"></div>
-                            <div className="bar__line"></div>
-                            <div className="bar__line"></div>
-                            <div className="bar__line"></div>
-                            <div className="bar__line"></div>
+                <div className="music-player__inner">
+                    <audio ref={audio} src={currentSongUrl}></audio>
+                    <button className="music-player__button" onClick={togglePlayPause}>
+                        {isPlaying ? (
+                            <Image src={pauseIcon} alt="pause"></Image>
+                        ) : (
+                            <Image src={playIcon} alt="play" style={{marginLeft: '3px'}}></Image>
+                        )}
+                    </button>
+                    <div className="progress">
+                        <div className="progress__current">{calculateTime(currentDisplayTime)}</div>
+                        <div className="bar">
+                            <div className="bar__back">
+                                <div className="bar__line"></div>
+                                <div className="bar__line"></div>
+                                <div className="bar__line"></div>
+                                <div className="bar__line"></div>
+                                <div className="bar__line"></div>
+                            </div>
+                            <div className="bar__unlocked" style={{ width: `${unlockedStagePercentage}%` }}>
+                                <div className="bar__current" style={{ width: `${progressWidth}%` }}></div>
+                            </div>
                         </div>
-                        <div className="bar__unlocked" style={{ width: `${unlockedStagePercentage}%` }}>
-                            <div className="bar__current" style={{ width: `${progressWidth}%` }}></div>
-                        </div>
+                        <div className="progress__duration">00:16</div>
                     </div>
-                    <div className="progress__duration">00:16</div>
                 </div>
             </div>
             <button className='button--outline'>Next song</button>

@@ -31,6 +31,7 @@
 }
 
 .game-footer {
+    position: relative;
     display: flex;
     justify-content: space-between;
 }

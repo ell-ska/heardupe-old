@@ -2,17 +2,18 @@
 import { useState } from "react"
 import Image from "next/image"
 import { useAtom } from "jotai"
-import { stageAtom } from "./gameAtoms"
-import placeholder from "../../public/placeholder.jpg"
+import { gameOverAtom, stageAtom } from "./gameAtoms"
 
-const GameBoard = ({ currentSongTitle }) => {
-    const [level, setLevel] = useState(1)
+const GameBoard = ({ currentSongTitle, currentArtistName, currentArtistImage, currentSongReleaseDate }) => {
+    // const [level, setLevel] = useState(1)
     const [stage, setStage] = useAtom(stageAtom)
+    const stageSeconds = [1, 2, 4, 7, 11, 16]
 
-    const [currentScore, setCurrentScore] = useState(0)
-    const [highScore, setHighScore] = useState(0)
+    // add: score tracker
+    // const [currentScore, setCurrentScore] = useState(0)
+    // const [highScore, setHighScore] = useState(0)
 
-    const [gameOver, setGameOver] = useState(false)
+    const [gameOver, setGameOver] = useAtom(gameOverAtom)
 
     const [guesses, setGuesses] = useState([
         {
@@ -36,12 +37,6 @@ const GameBoard = ({ currentSongTitle }) => {
         }
     ])
 
-    // !!! site breaks on guess 5?
-
-    if (stage >= 6) {
-        setGameOver(true)
-    }
-
     guesses.forEach(guess => {
         if (guess.number < stage && guess.value.length === 0) {
             guess.value = 'Skipped'
@@ -54,39 +49,50 @@ const GameBoard = ({ currentSongTitle }) => {
         event.preventDefault()
         const inputValue = event.target.elements.guess.value
 
-        if (inputValue.toLowerCase() === currentSongTitle.toLowerCase()) {
-            setGameOver(true)
-        } else {
-
+        if (stage < 6) {
+            if (inputValue.toLowerCase() === currentSongTitle.toLowerCase()) {
+                setGameOver(true)
+            } else {
+    
+                const allGuesses = guesses
+    
+                const updatedGuess = allGuesses.find(guess => guess.number === stage)
+                updatedGuess.value = inputValue
+                
+                setGuesses([...allGuesses])
+                setStage(prev => prev + 1)
+    
+            }
+        } else if (stage === 6) {
             const allGuesses = guesses
-
+    
             const updatedGuess = allGuesses.find(guess => guess.number === stage)
             updatedGuess.value = inputValue
             
             setGuesses([...allGuesses])
-            setStage(prev => prev + 1)
-
+            setGameOver(true)
         }
     }
 
     return (
         <div className="game">
             <div className="game__inner">
+                {/* add: loser page */}
                 {gameOver ? (
                     <div className="game-over">
                         <h3>Amazing!</h3>
-                        <span>You got the song from 4 seconds</span>
-                        <Image src={placeholder} alt="image of artist"></Image>
-                        <h4 className="game-over__song">Liz</h4>
-                        <span className="game-over__artist">Remi Wolf</span>
-                        <span className="game-over__year">2021</span>
+                        <span>You got the song from {stageSeconds[stage - 1]}s seconds</span>
+                        <Image src={currentArtistImage.url} width={currentArtistImage.width} height={currentArtistImage.height} alt={`image of ${currentArtistName}`}></Image>
+                        <h4 className="game-over__song">{currentSongTitle}</h4>
+                        <span className="game-over__artist">{currentArtistName}</span>
+                        <span className="game-over__year">{currentSongReleaseDate.slice(0, 4)}</span>
                     </div>
                     ) : (
                     <>
                         <div className="game__score">
-                            <div>Song: {level}/10</div>
-                            <div>Score: {currentScore}</div>
-                            <div>High Score: {highScore}</div>
+                            <div>Song: 1/10</div>
+                            <div>Score: 0</div>
+                            <div>High Score: 0</div>
                         </div>
                         <form className='game__guesser' action="" onSubmit={(e) => compareGuess(e)}>
                             <input type="text" name="guess" placeholder='Guess the song title'/>

@@ -1,9 +1,22 @@
 .music-player {
+    /* display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem; */
+    width: 100%;
+}
+
+.music-player__inner {
+    position: absolute;
+    left: 50%;
+    bottom: 1rem;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1rem;
+    gap: .5rem;
+    max-width: 32rem;
     width: 100%;
+    transform: translateX(-50%);
 }
 
 .music-player__button {
@@ -27,7 +40,6 @@
 
 .bar {
     position: relative;
-    max-width: 32rem;
     width: 100%;
     height: 4px;
     border-radius: 50vh;
