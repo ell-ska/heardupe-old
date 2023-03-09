@@ -1,21 +1,24 @@
 "use client"
 import { useState } from "react"
 import { useAtom } from "jotai"
-import { stageAtom, gameStatusAtom } from "./gameAtoms"
+import { stageAtom, gameStatusAtom, statsAtom } from "./gameAtoms"
 import WinnerScreen from './WinnerScreen'
+import gameOver from "./gameOver"
 
 const GameBoard = ({ currentSongTitle, currentArtistName, currentSongImage, currentSongReleaseDate }) => {
+
+    // ADD: if you leave game reset game
+
     // const [level, setLevel] = useState(1)
     const [stage, setStage] = useAtom(stageAtom)
     const stageSeconds = [1, 2, 4, 7, 11, 16]
 
-    // add: score tracker
-    // const [currentScore, setCurrentScore] = useState(0)
+
     const score = [600, 500, 400, 300, 200, 100]
     const currentScore = score[stage - 1]
-    // const [highScore, setHighScore] = useState(0)
 
     const [gameStatus, setGameStatus] = useAtom(gameStatusAtom)
+    const [statistics, setStatistics] = useAtom(statsAtom)
 
     const [guesses, setGuesses] = useState([
         {
@@ -45,15 +48,24 @@ const GameBoard = ({ currentSongTitle, currentArtistName, currentSongImage, curr
             guess.skipped = true
         }
     })
+    // const gameOver = (outcome, score) => {
 
-    const gameOver = (outcome) => {
-        const newGameStatus = {
-            gameOver: true,
-            gameOutcome: outcome
-        }
+    //     const newGameStatus = {
+    //         gameOver: true,
+    //         gameOutcome: outcome,
+    //         finalScore: score
+    //     }
 
-        setGameStatus(newGameStatus)
-    }
+    //     const newGameStats = {
+    //         totalScore: stats.totalScore + score,
+    //         highScore: score >= stats.highScore ? score : stats.highScore,
+    //         gamesPlayed: stats.gamesPlayed + 1
+    //     }
+
+    //     setGameStatus(newGameStatus)
+    //     setStats(newGameStats)
+    // }
+
 
     // DONE: no empty guess
     // DONE: no repeat guess
@@ -63,7 +75,6 @@ const GameBoard = ({ currentSongTitle, currentArtistName, currentSongImage, curr
     // ADD: guess suggestions
     const compareGuess = (event) => {
         event.preventDefault()
-        console.log(gameStatus)
 
         let inputValue = event.target.elements.guess.value
         let validGuess = true
@@ -81,7 +92,9 @@ const GameBoard = ({ currentSongTitle, currentArtistName, currentSongImage, curr
         if (stage < 6 && validGuess) {
 
             if (inputValue.toLowerCase() === currentSongTitle.toLowerCase()) {
-                gameOver('won')
+                const [newStatus, newStatistics] = gameOver('won', currentScore, statistics)
+                setGameStatus(newStatus)
+                setStatistics(newStatistics)
             } else {
     
                 const allGuesses = guesses
@@ -103,7 +116,10 @@ const GameBoard = ({ currentSongTitle, currentArtistName, currentSongImage, curr
             updatedGuess.value = inputValue
             
             setGuesses([...allGuesses])
-            gameOver('lost')
+
+            const [newStatus, newStatistics] = gameOver('lost', currentScore, statistics)
+            setGameStatus(newStatus)
+            setStatistics(newStatistics)
         }
     }
 

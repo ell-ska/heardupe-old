@@ -3,7 +3,8 @@ import { useRef, useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { useAtom } from "jotai"
-import { stageAtom, gameStatusAtom } from "./gameAtoms"
+import { stageAtom, gameStatusAtom, statsAtom } from "./gameAtoms"
+import gameOver from "./gameOver"
 import playIcon from "../../public/play.svg"
 import pauseIcon from "../../public/pause.svg"
 import './music-player.css'
@@ -12,6 +13,7 @@ const MusicPlayer = ({ currentSongUrl, currentSongSpotifyLink }) => {
     // https://www.youtube.com/watch?v=sqpg1qzJCGQ
 
     const [gameStatus, setGameStatus] = useAtom(gameStatusAtom)
+    const [statistics, setStatistics] = useAtom(statsAtom)
 
     const [isPlaying, setIsPlaying] = useState(false)
     const [currentDisplayTime, setCurrentDisplayTime] = useState(0)
@@ -87,11 +89,9 @@ const MusicPlayer = ({ currentSongUrl, currentSongSpotifyLink }) => {
                         setStage(prev => prev + 1)
 
                         if (stage >= 6) {
-                            const newGameStatus = {
-                                gameOver: true,
-                                gameOutcome: 'lost'
-                            }
-                            setGameStatus(newGameStatus)
+                            const [newStatus, newStatistics] = gameOver('lost', 100, statistics)
+                            setGameStatus(newStatus)
+                            setStatistics(newStatistics)
                         }
                     }}
                 >Skip {stage < 6 ? `(+${stage}s)` : null}</button>
