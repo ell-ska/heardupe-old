@@ -11,9 +11,11 @@ const GameBoard = ({ currentSongTitle, currentArtistName, currentArtistImage, cu
 
     // add: score tracker
     // const [currentScore, setCurrentScore] = useState(0)
+    const score = [600, 500, 400, 300, 200, 100]
+    const currentScore = score[stage - 1]
     // const [highScore, setHighScore] = useState(0)
 
-    const [gameOver, setGameOver] = useAtom(gameOverAtom)
+    const [gameIsOver, setGameIsOver] = useAtom(gameOverAtom)
 
     const [guesses, setGuesses] = useState([
         {
@@ -43,6 +45,14 @@ const GameBoard = ({ currentSongTitle, currentArtistName, currentArtistImage, cu
         }
     })
 
+    const gameOver = (outcome) => {
+        setGameIsOver(true)
+
+        // if (outcome === 'won') {
+
+        // }
+    }
+
     // fix: no empty guess, no repeat guess
     // add: guess suggestions
     const compareGuess = (event) => {
@@ -51,7 +61,7 @@ const GameBoard = ({ currentSongTitle, currentArtistName, currentArtistImage, cu
 
         if (stage < 6) {
             if (inputValue.toLowerCase() === currentSongTitle.toLowerCase()) {
-                setGameOver(true)
+                gameOver('won')
             } else {
     
                 const allGuesses = guesses
@@ -70,7 +80,7 @@ const GameBoard = ({ currentSongTitle, currentArtistName, currentArtistImage, cu
             updatedGuess.value = inputValue
             
             setGuesses([...allGuesses])
-            setGameOver(true)
+            gameOver('lost')
         }
     }
 
@@ -78,7 +88,7 @@ const GameBoard = ({ currentSongTitle, currentArtistName, currentArtistImage, cu
         <div className="game">
             <div className="game__inner">
                 {/* add: loser page */}
-                {gameOver ? (
+                {gameIsOver ? (
                     <div className="game-over">
                         <h3>Amazing!</h3>
                         <span>You got the song from {stageSeconds[stage - 1]}s seconds</span>
@@ -91,7 +101,7 @@ const GameBoard = ({ currentSongTitle, currentArtistName, currentArtistImage, cu
                     <>
                         <div className="game__score">
                             <div>Song: 1/10</div>
-                            <div>Score: 0</div>
+                            <div>Score: {currentScore}</div>
                             <div>High Score: 0</div>
                         </div>
                         <form className='game__guesser' action="" onSubmit={(e) => compareGuess(e)}>
