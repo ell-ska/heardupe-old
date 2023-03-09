@@ -1,8 +1,8 @@
 "use client"
 import { useState } from "react"
-import Image from "next/image"
 import { useAtom } from "jotai"
 import { gameOverAtom, stageAtom } from "./gameAtoms"
+import WinnerScreen from './WinnerScreen'
 
 const GameBoard = ({ currentSongTitle, currentArtistName, currentArtistImage, currentSongReleaseDate }) => {
     // const [level, setLevel] = useState(1)
@@ -16,6 +16,7 @@ const GameBoard = ({ currentSongTitle, currentArtistName, currentArtistImage, cu
     // const [highScore, setHighScore] = useState(0)
 
     const [gameIsOver, setGameIsOver] = useAtom(gameOverAtom)
+    const [gameOutcome, setGameOutcome] = useState('')
 
     const [guesses, setGuesses] = useState([
         {
@@ -47,10 +48,7 @@ const GameBoard = ({ currentSongTitle, currentArtistName, currentArtistImage, cu
 
     const gameOver = (outcome) => {
         setGameIsOver(true)
-
-        // if (outcome === 'won') {
-
-        // }
+        setGameOutcome(outcome)
     }
 
     // fix: no empty guess, no repeat guess
@@ -87,17 +85,15 @@ const GameBoard = ({ currentSongTitle, currentArtistName, currentArtistImage, cu
     return (
         <div className="game">
             <div className="game__inner">
-                {/* add: loser page */}
-                {gameIsOver ? (
-                    <div className="game-over">
-                        <h3>Amazing!</h3>
-                        <span>You got the song from {stageSeconds[stage - 1]}s seconds</span>
-                        <Image src={currentArtistImage.url} width={currentArtistImage.width} height={currentArtistImage.height} alt={`image of ${currentArtistName}`}></Image>
-                        <h4 className="game-over__song">{currentSongTitle}</h4>
-                        <span className="game-over__artist">{currentArtistName}</span>
-                        <span className="game-over__year">{currentSongReleaseDate.slice(0, 4)}</span>
-                    </div>
-                    ) : (
+                {gameIsOver ? 
+                    <WinnerScreen
+                        outcome={gameOutcome}
+                        seconds={stageSeconds[stage - 1]}
+                        image={currentArtistImage}
+                        title={currentSongTitle}
+                        name={currentArtistName}
+                        release={currentSongReleaseDate.slice(0, 4)}
+                    ></WinnerScreen> : 
                     <>
                         <div className="game__score">
                             <div>Song: 1/10</div>
@@ -111,7 +107,7 @@ const GameBoard = ({ currentSongTitle, currentArtistName, currentArtistImage, cu
                             {guesses.map(({ number, value }) => <div key={number}>{number}. {value}</div>)}
                         </div>
                     </>
-                )}
+                }
             </div>
         </div>
     )

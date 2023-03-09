@@ -26,7 +26,6 @@ const Game = async () => {
         <div className='main'>
             <GameBoard currentSongTitle={currentSongTitle} currentArtistName={currentArtistName} currentArtistImage={currentArtistImage} currentSongReleaseDate={currentSongReleaseDate}></GameBoard>
             <MusicPlayer currentSongUrl={currentSongUrl}></MusicPlayer>
-            {/* <Image src={currentArtistImage.url} alt="" width={currentArtistImage.width} height={currentArtistImage.height}></Image> */}
         </div>
     )
 }
