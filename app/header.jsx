@@ -24,9 +24,9 @@ const Header = () => {
                     <div className="menu__item">
                         <Link href="./playlists">Playlists</Link>
                     </div>
-                    <div className="menu__item">
+                    {/* <div className="menu__item">
                         <Link href="./search">Search</Link>
-                    </div>
+                    </div> */}
                     <div className="menu__item">
                         <Link href="./statistics">Statistics</Link>
                     </div>
