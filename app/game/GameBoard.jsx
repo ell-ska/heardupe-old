@@ -43,6 +43,7 @@ const GameBoard = ({ currentSongTitle, currentArtistName, currentArtistImage, cu
     guesses.forEach(guess => {
         if (guess.number < stage && guess.value.length === 0) {
             guess.value = 'Skipped'
+            guess.skipped = true
         }
     })
 
@@ -51,13 +52,30 @@ const GameBoard = ({ currentSongTitle, currentArtistName, currentArtistImage, cu
         setGameOutcome(outcome)
     }
 
-    // fix: no empty guess, no repeat guess
-    // add: guess suggestions
+    // DONE: no empty guess
+    // DONE: no repeat guess
+    // DONE: empty input after guess
+    // DONE: style skipped guesses
+    // ADD: styling on invalid guess
+    // ADD: guess suggestions
     const compareGuess = (event) => {
         event.preventDefault()
-        const inputValue = event.target.elements.guess.value
 
-        if (stage < 6) {
+        let inputValue = event.target.elements.guess.value
+        let validGuess = true
+
+        if (inputValue.length === 0) {
+            validGuess = false
+        }
+
+        guesses.map(guess => {
+            if (guess.value === inputValue) {
+                validGuess = false
+            }
+        })
+
+        if (stage < 6 && validGuess) {
+
             if (inputValue.toLowerCase() === currentSongTitle.toLowerCase()) {
                 gameOver('won')
             } else {
@@ -66,12 +84,15 @@ const GameBoard = ({ currentSongTitle, currentArtistName, currentArtistImage, cu
     
                 const updatedGuess = allGuesses.find(guess => guess.number === stage)
                 updatedGuess.value = inputValue
+
+                event.target.elements.guess.value = ''
                 
                 setGuesses([...allGuesses])
                 setStage(prev => prev + 1)
     
             }
-        } else if (stage === 6) {
+
+        } else if (stage === 6 && validGuess) {
             const allGuesses = guesses
     
             const updatedGuess = allGuesses.find(guess => guess.number === stage)
@@ -104,7 +125,7 @@ const GameBoard = ({ currentSongTitle, currentArtistName, currentArtistImage, cu
                             <input type="text" name="guess" placeholder='Guess the song title'/>
                         </form>
                         <div className="game__guesses">
-                            {guesses.map(({ number, value }) => <div key={number}>{number}. {value}</div>)}
+                            {guesses.map(({ number, value, skipped }) => <div key={number}>{number}. <span style={skipped ? {color: 'var(--color-primary-500)'} : null}>{value}</span></div>)}
                         </div>
                     </>
                 }
