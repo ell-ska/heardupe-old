@@ -4,7 +4,7 @@ import './css/components/card.css'
 import './css/home.css'
 
 export default async function Home() {
-  const staticArtist = await fetchArtist('veronicamaggio')
+  const staticArtist = await fetchArtist('grizzlybear')
 
   return (
     <div className="gallery">

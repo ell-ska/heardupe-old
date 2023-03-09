@@ -11,14 +11,14 @@ const getTopTracks = async (name) => {
 }
 
 const Game = async () => {
-    const currentArtistTracks = await getTopTracks('veronicamaggio')
-    const currentSongTitle = currentArtistTracks.tracks[6].name
-    const currentSongUrl = currentArtistTracks.tracks[6].preview_url
-    const currentSongReleaseDate = currentArtistTracks.tracks[6].album.release_date
-    const currentSongImage = currentArtistTracks.tracks[6].album.images[0]
-    const currentSongSpotifyLink = currentArtistTracks.tracks[6].external_urls.spotify
+    const currentArtistTracks = await getTopTracks('grizzlybear')
+    const currentSongTitle = currentArtistTracks.tracks[0].name
+    const currentSongUrl = currentArtistTracks.tracks[0].preview_url
+    const currentSongReleaseDate = currentArtistTracks.tracks[0].album.release_date
+    const currentSongImage = currentArtistTracks.tracks[0].album.images[0]
+    const currentSongSpotifyLink = currentArtistTracks.tracks[0].external_urls.spotify
 
-    const currentArtist = await fetchArtist('veronicamaggio')
+    const currentArtist = await fetchArtist('grizzlybear')
     const currentArtistName = currentArtist.artists.items[0].name
 
     return (

@@ -4,7 +4,7 @@ import './playlists.css'
 import '../css/components/card.css'
 
 const Playlists = async () => {
-    const staticArtist = await fetchArtist('veronicamaggio')
+    const staticArtist = await fetchArtist('grizzlybear')
 
     return (
         <div className="playlists">
