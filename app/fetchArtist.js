@@ -1,4 +1,4 @@
-async function fetchArtist(artist: string) {
+async function fetchArtist(artist) {
   const res = await fetch(`https://spotify-api-wrapper.appspot.com/artist/${artist}`)
 
   if (!res.ok) {

@@ -1,7 +1,6 @@
 import GameBoard from './GameBoard'
 import MusicPlayer from './MusicPlayer'
 import fetchArtist from '../fetchArtist'
-// import Image from 'next/image'
 import './game.css'
 import '../css/components/buttons.css'
 import '../css/components/input.css'
@@ -12,19 +11,18 @@ const getTopTracks = async (name) => {
 }
 
 const Game = async () => {
-    const currentArtistTracks = await getTopTracks('ulrikmunter')
-    const currentSongTitle = currentArtistTracks.tracks[1].name
-    const currentSongUrl = currentArtistTracks.tracks[1].preview_url
-    const currentSongReleaseDate = currentArtistTracks.tracks[1].album.release_date
+    const currentArtistTracks = await getTopTracks('veronicamaggio')
+    const currentSongTitle = currentArtistTracks.tracks[6].name
+    const currentSongUrl = currentArtistTracks.tracks[6].preview_url
+    const currentSongReleaseDate = currentArtistTracks.tracks[6].album.release_date
+    const currentSongImage = currentArtistTracks.tracks[6].album.images[0]
 
-    const currentArtist = await fetchArtist('ulrikmunter')
+    const currentArtist = await fetchArtist('veronicamaggio')
     const currentArtistName = currentArtist.artists.items[0].name
-    const currentArtistImage = currentArtist.artists.items[0].images[1]
-
 
     return (
         <div className='main'>
-            <GameBoard currentSongTitle={currentSongTitle} currentArtistName={currentArtistName} currentArtistImage={currentArtistImage} currentSongReleaseDate={currentSongReleaseDate}></GameBoard>
+            <GameBoard currentSongTitle={currentSongTitle} currentArtistName={currentArtistName} currentSongImage={currentSongImage} currentSongReleaseDate={currentSongReleaseDate}></GameBoard>
             <MusicPlayer currentSongUrl={currentSongUrl}></MusicPlayer>
         </div>
     )

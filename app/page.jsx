@@ -1,10 +1,10 @@
-import Image from 'next/image'
 import fetchArtist from './fetchArtist'
+import ArtistCard from './ArtistCard'
 import './css/components/card.css'
 import './css/home.css'
 
 export default async function Home() {
-  const remi = await fetchArtist('remiwolf')
+  const staticArtist = await fetchArtist('veronicamaggio')
 
   return (
     <div className="gallery">
@@ -14,16 +14,7 @@ export default async function Home() {
           <h1>H3ard!e</h1>
           <h2>Please pick a playlist to start</h2>
         </div>
-        <div className="card">
-          <Image
-            className='card__image'
-            src={remi.artists.items[0].images[0].url}
-            alt=""
-            width={remi.artists.items[0].images[0].width}
-            height={remi.artists.items[0].images[0].height}
-          ></Image>
-          <h3 className="card__title">{remi.artists.items[0].name}</h3>
-        </div>
+        <ArtistCard artist={staticArtist}></ArtistCard>
       </div>
     </div>
   )

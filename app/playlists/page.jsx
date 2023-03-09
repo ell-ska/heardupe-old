@@ -1,16 +1,18 @@
+import fetchArtist from '../fetchArtist'
+import ArtistCard from '../ArtistCard'
 import './playlists.css'
 import '../css/components/card.css'
 
-const Playlists = () => {
+const Playlists = async () => {
+    const staticArtist = await fetchArtist('veronicamaggio')
+
     return (
         <div className="playlists">
             <div className="playlists__inner">
                 <div className="playlist__section">
                     <h2 className="playlist__title">Last Played</h2>
                     <div className="playlist__gallery">
-                        <div className="card">
-                            <h3 className="card__title">Remi Wolf</h3>
-                        </div>
+                        <ArtistCard artist={staticArtist}></ArtistCard>
                     </div>
                 </div>
             </div>

@@ -4,7 +4,7 @@ import { useAtom } from "jotai"
 import { gameOverAtom, stageAtom } from "./gameAtoms"
 import WinnerScreen from './WinnerScreen'
 
-const GameBoard = ({ currentSongTitle, currentArtistName, currentArtistImage, currentSongReleaseDate }) => {
+const GameBoard = ({ currentSongTitle, currentArtistName, currentSongImage, currentSongReleaseDate }) => {
     // const [level, setLevel] = useState(1)
     const [stage, setStage] = useAtom(stageAtom)
     const stageSeconds = [1, 2, 4, 7, 11, 16]
@@ -110,7 +110,7 @@ const GameBoard = ({ currentSongTitle, currentArtistName, currentArtistImage, cu
                     <WinnerScreen
                         outcome={gameOutcome}
                         seconds={stageSeconds[stage - 1]}
-                        image={currentArtistImage}
+                        image={currentSongImage}
                         title={currentSongTitle}
                         name={currentArtistName}
                         release={currentSongReleaseDate.slice(0, 4)}
