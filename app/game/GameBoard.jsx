@@ -1,7 +1,7 @@
 "use client"
 import { useState } from "react"
 import { useAtom } from "jotai"
-import { gameOverAtom, stageAtom } from "./gameAtoms"
+import { stageAtom, gameStatusAtom } from "./gameAtoms"
 import WinnerScreen from './WinnerScreen'
 
 const GameBoard = ({ currentSongTitle, currentArtistName, currentSongImage, currentSongReleaseDate }) => {
@@ -15,8 +15,7 @@ const GameBoard = ({ currentSongTitle, currentArtistName, currentSongImage, curr
     const currentScore = score[stage - 1]
     // const [highScore, setHighScore] = useState(0)
 
-    const [gameIsOver, setGameIsOver] = useAtom(gameOverAtom)
-    const [gameOutcome, setGameOutcome] = useState('')
+    const [gameStatus, setGameStatus] = useAtom(gameStatusAtom)
 
     const [guesses, setGuesses] = useState([
         {
@@ -48,8 +47,12 @@ const GameBoard = ({ currentSongTitle, currentArtistName, currentSongImage, curr
     })
 
     const gameOver = (outcome) => {
-        setGameIsOver(true)
-        setGameOutcome(outcome)
+        const newGameStatus = {
+            gameOver: true,
+            gameOutcome: outcome
+        }
+
+        setGameStatus(newGameStatus)
     }
 
     // DONE: no empty guess
@@ -60,6 +63,7 @@ const GameBoard = ({ currentSongTitle, currentArtistName, currentSongImage, curr
     // ADD: guess suggestions
     const compareGuess = (event) => {
         event.preventDefault()
+        console.log(gameStatus)
 
         let inputValue = event.target.elements.guess.value
         let validGuess = true
@@ -92,7 +96,7 @@ const GameBoard = ({ currentSongTitle, currentArtistName, currentSongImage, curr
     
             }
 
-        } else if (stage === 6 && validGuess) {
+        } else if (stage >= 6 && validGuess) {
             const allGuesses = guesses
     
             const updatedGuess = allGuesses.find(guess => guess.number === stage)
@@ -106,9 +110,9 @@ const GameBoard = ({ currentSongTitle, currentArtistName, currentSongImage, curr
     return (
         <div className="game">
             <div className="game__inner">
-                {gameIsOver ? 
+                {gameStatus.gameOver ? 
                     <WinnerScreen
-                        outcome={gameOutcome}
+                        outcome={gameStatus.gameOutcome}
                         seconds={stageSeconds[stage - 1]}
                         image={currentSongImage}
                         title={currentSongTitle}

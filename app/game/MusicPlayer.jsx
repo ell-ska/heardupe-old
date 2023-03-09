@@ -1,16 +1,17 @@
 "use client"
 import { useRef, useState } from "react"
 import Image from "next/image"
+import Link from "next/link"
 import { useAtom } from "jotai"
-import { gameOverAtom, stageAtom } from "./gameAtoms"
+import { stageAtom, gameStatusAtom } from "./gameAtoms"
 import playIcon from "../../public/play.svg"
 import pauseIcon from "../../public/pause.svg"
 import './music-player.css'
 
-const MusicPlayer = ({ currentSongUrl }) => {
+const MusicPlayer = ({ currentSongUrl, currentSongSpotifyLink }) => {
     // https://www.youtube.com/watch?v=sqpg1qzJCGQ
 
-    const [gameOver, setGameOver] = useAtom(gameOverAtom)
+    const [gameStatus, setGameStatus] = useAtom(gameStatusAtom)
 
     const [isPlaying, setIsPlaying] = useState(false)
     const [currentDisplayTime, setCurrentDisplayTime] = useState(0)
@@ -18,10 +19,10 @@ const MusicPlayer = ({ currentSongUrl }) => {
     const [stage, setStage] = useAtom(stageAtom)
 
     const stageSeconds = [1, 2, 4, 7, 11, 16]
-    const secondsToPlay = gameOver ? stageSeconds.at(-1) : stageSeconds[stage - 1]
+    const secondsToPlay = gameStatus.gameOver ? stageSeconds.at(-1) : stageSeconds[stage - 1]
 
     const stagePercentages = [6.25, 12.5, 25, 43.75, 68.75, 100]
-    const unlockedStagePercentage = gameOver ? stagePercentages.at(-1) : stagePercentages[stage - 1]
+    const unlockedStagePercentage = gameStatus.gameOver ? stagePercentages.at(-1) : stagePercentages[stage - 1]
 
     const [progressWidth, setProgressWidth] = useState(0)
 
@@ -75,13 +76,25 @@ const MusicPlayer = ({ currentSongUrl }) => {
 
     return (
         <div className="game-footer">
-            {gameOver ? (
-                <button className="button">Listen on Spotify</button>
+            {gameStatus.gameOver ? (
+                <Link href={currentSongSpotifyLink}>
+                    <button className="button">Listen on Spotify</button>
+                </Link>
             ) : (
                 <button
                     className='button'
-                    onClick={() => setStage(prev => prev + 1)}
-                >Skip (+{stage}s)</button>
+                    onClick={() => {
+                        setStage(prev => prev + 1)
+
+                        if (stage >= 6) {
+                            const newGameStatus = {
+                                gameOver: true,
+                                gameOutcome: 'lost'
+                            }
+                            setGameStatus(newGameStatus)
+                        }
+                    }}
+                >Skip {stage < 6 ? `(+${stage}s)` : null}</button>
             )}
             <div className="music-player">
                 <div className="music-player__inner">

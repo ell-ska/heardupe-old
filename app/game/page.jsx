@@ -16,6 +16,7 @@ const Game = async () => {
     const currentSongUrl = currentArtistTracks.tracks[6].preview_url
     const currentSongReleaseDate = currentArtistTracks.tracks[6].album.release_date
     const currentSongImage = currentArtistTracks.tracks[6].album.images[0]
+    const currentSongSpotifyLink = currentArtistTracks.tracks[6].external_urls.spotify
 
     const currentArtist = await fetchArtist('veronicamaggio')
     const currentArtistName = currentArtist.artists.items[0].name
@@ -23,7 +24,7 @@ const Game = async () => {
     return (
         <div className='main'>
             <GameBoard currentSongTitle={currentSongTitle} currentArtistName={currentArtistName} currentSongImage={currentSongImage} currentSongReleaseDate={currentSongReleaseDate}></GameBoard>
-            <MusicPlayer currentSongUrl={currentSongUrl}></MusicPlayer>
+            <MusicPlayer currentSongUrl={currentSongUrl} currentSongSpotifyLink={currentSongSpotifyLink}></MusicPlayer>
         </div>
     )
 }
