@@ -14,18 +14,14 @@ const MusicPlayer = ({ currentSongUrl, currentSongSpotifyLink }) => {
 
     const [gameStatus, setGameStatus] = useAtom(gameStatusAtom)
     const [statistics, setStatistics] = useAtom(statsAtom)
-
-    const [isPlaying, setIsPlaying] = useState(false)
-    const [currentDisplayTime, setCurrentDisplayTime] = useState(0)
-    
     const [stage, setStage] = useAtom(stageAtom)
 
-    const stageSeconds = [1, 2, 4, 7, 11, 16]
-    const secondsToPlay = gameStatus.gameOver ? stageSeconds.at(-1) : stageSeconds[stage - 1]
-
+    const secondsToPlay = gameStatus.gameOver ? stage.seconds.at(-1) : stage.seconds[stage.number - 1]
     const stagePercentages = [6.25, 12.5, 25, 43.75, 68.75, 100]
-    const unlockedStagePercentage = gameStatus.gameOver ? stagePercentages.at(-1) : stagePercentages[stage - 1]
-
+    const unlockedStagePercentage = gameStatus.gameOver ? stagePercentages.at(-1) : stagePercentages[stage.number - 1]
+    
+    const [isPlaying, setIsPlaying] = useState(false)
+    const [currentDisplayTime, setCurrentDisplayTime] = useState(0)
     const [progressWidth, setProgressWidth] = useState(0)
 
     const audio = useRef()
@@ -86,15 +82,19 @@ const MusicPlayer = ({ currentSongUrl, currentSongSpotifyLink }) => {
                 <button
                     className='button'
                     onClick={() => {
-                        setStage(prev => prev + 1)
+                        const newStage = stage.number + 1
+                        setStage({
+                            ...stage,
+                            number: newStage
+                        })
 
-                        if (stage >= 6) {
+                        if (stage.number >= 6) {
                             const [newStatus, newStatistics] = gameOver('lost', 100, statistics)
                             setGameStatus(newStatus)
                             setStatistics(newStatistics)
                         }
                     }}
-                >Skip {stage < 6 ? `(+${stage}s)` : null}</button>
+                >Skip {stage.number < 6 ? `(+${stage.number}s)` : null}</button>
             )}
             <div className="music-player">
                 <div className="music-player__inner">

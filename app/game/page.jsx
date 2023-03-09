@@ -5,13 +5,13 @@ import './game.css'
 import '../css/components/buttons.css'
 import '../css/components/input.css'
 
-const getTopTracks = async (name) => {
+const fetchTopTracks = async (name) => {
     const artist = await fetchArtist(name)
     return await fetchArtist(`${artist.artists.items[0].id}/top-tracks`)
 }
 
 const Game = async () => {
-    const currentArtistTracks = await getTopTracks('grizzlybear')
+    const currentArtistTracks = await fetchTopTracks('grizzlybear')
     const currentSongTitle = currentArtistTracks.tracks[0].name
     const currentSongUrl = currentArtistTracks.tracks[0].preview_url
     const currentSongReleaseDate = currentArtistTracks.tracks[0].album.release_date

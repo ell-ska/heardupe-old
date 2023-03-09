@@ -8,7 +8,7 @@ const ArtistCard = ({ artist }) => {
             <Image
               className='card__image'
               src={artist.artists.items[0].images[0].url}
-              alt=""
+              alt={artist.artists.items[0].name}
               width={artist.artists.items[0].images[0].width}
               height={artist.artists.items[0].images[0].height}
             ></Image>

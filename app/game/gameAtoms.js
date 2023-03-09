@@ -1,7 +1,10 @@
 import { atom } from 'jotai'
 import { atomWithStorage } from 'jotai/utils'
 
-export const stageAtom = atom(1)
+export const stageAtom = atom({
+    number: 1,
+    seconds: [1, 2, 4, 7, 11, 16]
+})
 
 export const gameStatusAtom = atom({
     gameOver: false,
