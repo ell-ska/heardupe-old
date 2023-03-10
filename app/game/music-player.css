@@ -28,6 +28,11 @@
     margin: 0;
     padding: 0;
     background-color: var(--color-secondary);
+    transition: transform .2s ease;
+}
+
+.music-player__button:hover {
+    transform: scale(1.1);
 }
 
 .progress {

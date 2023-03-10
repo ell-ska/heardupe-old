@@ -1,8 +1,10 @@
-button, .button {
+button,
+.button {
     padding: 1rem 2rem;
     border-radius: 50vh;
     background-color: var(--color-secondary);
     color: var(--color-primary-900);
+    transition: transform .2s ease;
 }
 
 .button--outline {
@@ -10,4 +12,10 @@ button, .button {
     background: none;
     color: var(--color-secondary);
     border: 2px solid var(--color-secondary);
+}
+
+
+.button:hover,
+.button--outline:hover {
+    transform: scale(1.05);
 }
