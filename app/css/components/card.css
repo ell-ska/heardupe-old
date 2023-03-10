@@ -26,6 +26,7 @@
     position: absolute;
     right: .5rem;
     bottom: -1rem;
+    padding: 0;
     filter: drop-shadow(0 4px 4px var(--color-shadow));
     transition: all .2s ease;
 }

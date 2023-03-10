@@ -12,16 +12,34 @@
 
 .menu {
     display: flex;
+    align-items: center;
     gap: 3rem;
 }
 
 .menu__item {
     position: relative;
+    transition: background-color .3s;
+}
+
+.menu__item:first-of-type:not(.menu__item--active) {
+    margin-left: 1rem;
 }
 
 .menu__item:first-of-type a {
     position: absolute;
-    left: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.menu__item--active {
+    margin-inline: -1rem;
+    padding: .5rem 1rem;
+    border-radius: 50vh;
+    background-color: var(--color-primary-600);
+}
+
+.menu__item:first-of-type.menu__item--active {
+    margin-inline: 0 -1rem;
 }
 
 .menu__item span {
@@ -30,8 +48,12 @@
     user-select: none;
 }
 
-.menu__item--easter-egg:first-of-type a {
+.menu__item--easter-egg a {
     animation: easter-egg 2s ease-out forwards;
+}
+
+.menu__item--easter-egg {
+    background: var(--color-primary-900);
 }
 
 @keyframes easter-egg {
