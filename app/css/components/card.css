@@ -4,12 +4,27 @@
     background-color: var(--color-primary-800);
 }
 
+.card:hover {
+    background-color: var(--color-primary-700);
+}
+
+.card:hover .card__image::after {
+    content: url('../../../public/play-card.svg');
+    position: absolute;
+    right: .5rem;
+    bottom: .5rem;
+    filter: drop-shadow(0 4px 4px var(--color-shadow));
+}
+
 .card__image {
+    position: relative;
     margin-bottom: 1rem;
-    max-width: 10rem;
-    max-height: 10rem;
-    border-radius: .5rem;
-    object-fit: cover;
+    max-width: 100%;
+    aspect-ratio: 1 / 1;
+}
+
+.card__image img {
+    border-radius: 4px;
 }
 
 .card__title {
@@ -17,25 +32,34 @@
     font-weight: var(--font-weight-regular);
 }
 
-.card--welcome {
-    display: flex;
-    flex-direction: column;
-    justify-content: end;
-    grid-column: span 2;
-    background-color: var(--color-accent);
-    color: var(--color-primary-900);
-}
-
-.card--welcome h1 {
-    margin-block: 2px 1rem;
-    font-family: var(--font-branding);
-    font-size: var(--font-size-4);
-    font-weight: var(--font-weight-regular);
-}
-
-.card--welcome h2 {
+.card__desc {
+    color: var(--color-primary-500);
     font-size: var(--font-size-1);
-    font-weight: var(--font-weight-regular);
+    line-height: 1.5;
+}
+
+.card--big {
+    grid-column: span 2;
+    padding: 2rem;
+}
+
+.card--big .card__image {
+    margin-bottom: 2rem;
+}
+
+.card--big .card__featured {
+    margin-bottom: 2px;
+    color: var(--color-primary-500);
+    font-size: var(--font-size-2);
+}
+
+.card--big .card__title {
+    font-size: var(--font-size-3);
+    font-weight: var(--font-weight-bold);
+}
+
+.card--big .card__desc {
+    margin-top: 1.125rem;
 }
 
 .card--stats {

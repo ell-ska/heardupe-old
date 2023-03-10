@@ -103,7 +103,7 @@ const MusicPlayer = ({ currentSongUrl, currentSongSpotifyLink }) => {
                         {isPlaying ? (
                             <Image src={pauseIcon} alt="pause"></Image>
                         ) : (
-                            <Image src={playIcon} alt="play" style={{marginLeft: '3px'}}></Image>
+                            <Image src={playIcon} alt="play"></Image>
                         )}
                     </button>
                     <div className="progress">

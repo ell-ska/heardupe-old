@@ -6,6 +6,9 @@ import './css/base.css'
 export const metadata = {
   title: 'HeardleDupe',
   description: "A dupe of Spotify's music quiz Heardle",
+  icons: {
+    icon: '/favicon.svg'
+  }
 }
 
 export default function RootLayout({ children }) {

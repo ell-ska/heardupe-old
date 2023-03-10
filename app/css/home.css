@@ -1,14 +1,34 @@
-.gallery {
+.hero {
     margin-top: 2rem;
     flex: 1 0 auto;
     display: grid;
     grid-template-columns: var(--grid-container);
 }
 
-.gallery__inner {
+.hero__inner {
     grid-column: 2;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
+    justify-items: center;
     align-content: start;
     gap: 2rem;
+}
+
+.hero__text {
+    display: flex;
+    flex-direction: column;
+    grid-column: span 2;
+    justify-content: center;
+}
+
+.hero__text h1 {
+    margin-bottom: 7px;
+    font-family: var(--font-branding);
+    font-size: var(--font-size-6);
+    font-weight: var(--font-weight-regular);
+}
+
+.hero__text h2 {
+    font-size: var(--font-size-2);
+    font-weight: var(--font-weight-regular);
 }

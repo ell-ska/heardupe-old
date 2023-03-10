@@ -6,6 +6,8 @@ import './css/header.css'
 
 const Header = () => {
 
+    // ADD: active menu item
+
     const [homeClick, setHomeClick] = useState(0)
     const routerPath = usePathname()
 
