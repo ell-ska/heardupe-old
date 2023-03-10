@@ -2,18 +2,16 @@
     padding: 1.5rem;
     border-radius: .5rem;
     background-color: var(--color-primary-800);
+    transition: background-color .3s;
 }
 
 .card:hover {
     background-color: var(--color-primary-700);
 }
 
-.card:hover .card__image::after {
-    content: url('../../../public/play-card.svg');
-    position: absolute;
-    right: .5rem;
+.card:hover .card__image button {
+    opacity: 1;
     bottom: .5rem;
-    filter: drop-shadow(0 4px 4px var(--color-shadow));
 }
 
 .card__image {
@@ -21,6 +19,19 @@
     margin-bottom: 1rem;
     max-width: 100%;
     aspect-ratio: 1 / 1;
+}
+
+.card__image button {
+    opacity: 0;
+    position: absolute;
+    right: .5rem;
+    bottom: -1rem;
+    filter: drop-shadow(0 4px 4px var(--color-shadow));
+    transition: all .2s ease;
+}
+
+.card__image button:hover {
+    transform: scale(1.1);
 }
 
 .card__image img {

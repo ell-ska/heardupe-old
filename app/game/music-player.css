@@ -43,7 +43,7 @@
     width: 100%;
     height: 4px;
     border-radius: 50vh;
-    background-color: var(--color-primary-700);
+    background-color: var(--color-primary-600);
 }
 
 .bar__unlocked {
@@ -99,7 +99,7 @@
 
 /* BREAK */
 .progress__bar {
-    --bar-color: var(--color-primary-700);
+    --bar-color: var(--color-primary-600);
     --bar-height: 4px;
     --bar-width: 32rem;
     --duration-width: 0;

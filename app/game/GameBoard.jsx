@@ -120,7 +120,7 @@ const GameBoard = ({ currentSongTitle, currentArtistName, currentSongImage, curr
                         <div className="game__score">
                             <div>Song: 1/10</div>
                             <div>Score: {currentScore}</div>
-                            <div>High Score: 0</div>
+                            <div>High Score: {statistics.highScore}</div>
                         </div>
                         <form className='game__guesser' action="" onSubmit={(e) => compareGuess(e)}>
                             <input type="text" name="guess" placeholder='Guess the song title'/>
