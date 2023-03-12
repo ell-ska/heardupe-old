@@ -1,27 +1,27 @@
 .playlists {
-    flex: 1 0 auto;
-    display: grid;
-    grid-template-columns: var(--grid-container);
-    margin-top: 2rem;
+	flex: 1 0 auto;
+	display: grid;
+	grid-template-columns: var(--grid-container);
+	margin-top: 2rem;
 }
 
 .playlists__inner {
-    grid-column: 2;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
+	grid-column: 2;
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
 }
 
 .playlist__section:not(:nth-of-type(1)) {
-    margin-top: 4rem;
+	margin-top: 4rem;
 }
 
 .playlist__title {
-    margin-bottom: 1.5rem;
-    font-size: var(--font-size-3);
-    font-weight: var(--font-weight-bold);
+	margin-bottom: 1.5rem;
+	font-size: var(--font-size-3);
+	font-weight: var(--font-weight-bold);
 }
 
 .playlist__gallery {
-    display: flex;
-    gap: 2rem;
+	display: flex;
+	gap: 2rem;
 }

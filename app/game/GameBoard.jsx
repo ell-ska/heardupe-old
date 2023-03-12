@@ -1,9 +1,9 @@
-"use client"
-import { useState } from "react"
-import { useAtom } from "jotai"
-import { stageAtom, gameStatusAtom, statsAtom } from "./gameAtoms"
+'use client'
+import { useState } from 'react'
+import { useAtom } from 'jotai'
+import { stageAtom, gameStatusAtom, statsAtom } from './gameAtoms'
 import WinnerScreen from './WinnerScreen'
-import gameOver from "./gameOver"
+import gameOver from './gameOver'
 
 const GameBoard = ({ currentSongTitle, currentArtistName, currentSongImage, currentSongReleaseDate }) => {
     // ADD: if you leave game: reset game

@@ -1,31 +1,33 @@
-import Link from "next/link"
+import Link from 'next/link'
 import Image from 'next/image'
 import playIcon from '../public/play-card.svg'
 
 const capitalizeFirstLetter = (string) => {
-  return string.charAt(0).toUpperCase() + string.slice(1)
+	return string.charAt(0).toUpperCase() + string.slice(1)
 }
 
 const ArtistCard = ({ artist, featured, desc }) => {
-  const genres = artist.artists.items[0].genres.slice(0, 3).join(', ')
+	const genres = artist.artists.items[0].genres.slice(0, 3).join(', ')
 
-    return (
-      <Link href="./game" className={featured ? "card card--big" : "card"}>
-        <div className="card__image">
-          <Image
-            // className='card__image'
-            src={artist.artists.items[0].images[0].url}
-            alt={artist.artists.items[0].name}
-            width={artist.artists.items[0].images[0].width}
-            height={artist.artists.items[0].images[0].height}
-          ></Image>
-          <button><Image src={playIcon} alt="Play"></Image></button>
-        </div>
-        {featured ? <span className="card__featured">Featured</span> : null}
-        <h3 className="card__title">{artist.artists.items[0].name}</h3>
+	return (
+		<Link href="./game" className={featured ? 'card card--big' : 'card'}>
+			<div className="card__image">
+				<Image
+					// className='card__image'
+					src={artist.artists.items[0].images[0].url}
+					alt={artist.artists.items[0].name}
+					width={artist.artists.items[0].images[0].width}
+					height={artist.artists.items[0].images[0].height}
+				></Image>
+				<button>
+					<Image src={playIcon} alt="Play"></Image>
+				</button>
+			</div>
+			{featured ? <span className="card__featured">Featured</span> : null}
+			<h3 className="card__title">{artist.artists.items[0].name}</h3>
         {desc ? <p className="card__desc">{capitalizeFirstLetter(genres)}</p> : null}
-      </Link>
-    )
+		</Link>
+	)
 }
 
 export default ArtistCard

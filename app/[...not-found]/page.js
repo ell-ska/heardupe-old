@@ -1,4 +1,4 @@
-import { notFound } from "next/navigation"
+import { notFound } from 'next/navigation'
 
 const NotFoundCatchAll = () => {
     notFound()
