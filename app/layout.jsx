@@ -1,5 +1,5 @@
-import Header from './Header'
-import Footer from './Footer'
+import Header from './Header.jsx'
+import Footer from './Footer.jsx'
 import './css/variables.css'
 import './css/base.css'
 
