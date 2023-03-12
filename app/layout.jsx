@@ -1,7 +1,7 @@
-import Header from './Header'
-import Footer from './Footer'
-import './css/variables.css'
-import './css/base.css'
+import Header from '/Header'
+import Footer from '/Footer'
+import '/css/variables.css'
+import '/css/base.css'
 
 export const metadata = {
 	title: 'HeardleDupe',
