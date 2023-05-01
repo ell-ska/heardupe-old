@@ -38,7 +38,7 @@ export const authOptions = {
   ],
   secret: process.env.JWT_SECRET,
   pages: {
-    signIn: '/login'
+    // signIn: '/login'
   },
   callbacks: {
     // authenticate
@@ -78,4 +78,5 @@ export const authOptions = {
   }
 }
 
-export default NextAuth(authOptions)
+const handler = NextAuth(authOptions)
+export { handler as GET, handler as POST }
