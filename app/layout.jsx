@@ -1,3 +1,4 @@
+import NextAuthProvider from './providers'
 import Header from './Header'
 import Footer from './Footer'
 import './css/variables.css'
@@ -11,16 +12,20 @@ export const metadata = {
   }
 }
 
-export default function RootLayout({ children }) {
+const RootLayout = ({ children }) => {
   return (
     <html lang="en">
       <body>
-        <div className="container">
-          <Header></Header>
-          {children}
-          <Footer></Footer>
-        </div>
+        <NextAuthProvider>
+          <div className="container">
+            <Header></Header>
+            {children}
+            <Footer></Footer>
+          </div>
+        </NextAuthProvider>
       </body>
     </html>
   )
 }
+
+export default RootLayout
