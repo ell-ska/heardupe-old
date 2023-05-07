@@ -1,4 +1,3 @@
-button,
 .button {
     padding: 1rem 2rem;
     border-radius: 50vh;
@@ -14,6 +13,16 @@ button,
     border: 2px solid var(--color-secondary);
 }
 
+.button--small {
+    padding: .5rem 1rem;
+}
+
+.button--small--outline {
+    padding: calc(.5rem - 2px) calc(1rem - 2px);
+    background: none;
+    color: var(--color-secondary);
+    border: 2px solid var(--color-secondary);
+}
 
 .button:hover,
 .button--outline:hover {

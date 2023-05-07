@@ -1,0 +1,27 @@
+.profile {
+	flex: 1 0 auto;
+	display: grid;
+	grid-template-columns: var(--grid-container);
+	align-content: start;
+	margin-top: 2rem;
+}
+
+.profile__inner {
+	grid-column: 2;
+}
+
+.account {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.account__image {
+	border-radius: 50%;
+	overflow: hidden;
+}
+
+.account__buttons {
+	display: flex;
+	gap: 1rem;
+}

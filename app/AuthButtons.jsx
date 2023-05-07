@@ -7,13 +7,13 @@ const LoginButton = ({ name, id }) => {
         <button
             className='button'
             onClick={() => signIn(id, { callbackUrl: '/' })}
-            >Login with {name}</button>
+        >Login with {name}</button>
     )   
 }
 
 const LogoutButton = () => {
     return (
-        <button onClick={() => signOut()}>Log out</button>
+        <button className='button button--small' onClick={() => signOut({ callbackUrl: '/' })}>Log out</button>
     )
 }
 

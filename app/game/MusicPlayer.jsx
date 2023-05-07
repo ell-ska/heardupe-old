@@ -126,7 +126,7 @@ const MusicPlayer = ({ currentSongUrl, currentSongSpotifyLink }) => {
 					</div>
 				</div>
 			</div>
-			<button className="button--outline">Next song</button>
+			<button className="button button--outline">Next song</button>
 		</div>
 	)
 }

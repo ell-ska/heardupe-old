@@ -24,8 +24,8 @@ const Header = () => {
 			name: 'Playlists',
 		},
 		{
-			path: './statistics',
-			name: 'Statistics',
+			path: './profile',
+			name: 'Profile',
 		},
 	]
 

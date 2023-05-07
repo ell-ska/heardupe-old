@@ -10,13 +10,12 @@ const Home = async () => {
 	const staticArtist = await fetchArtist('grizzlybear')
 
 	const session = await getServerSession(authOptions)
-	console.log(session)
+	// console.log(session)
 
 	return (
 		<div className="hero">
 			<div className="hero__inner">
-				<LogoutButton></LogoutButton>
-				{/* <ArtistCard
+				<ArtistCard
 					artist={staticArtist}
 					featured={true}
 					desc={true}
@@ -25,7 +24,7 @@ const Home = async () => {
 					<span>Hello, and welcome to</span>
 					<h1>Heardupe</h1>
 					<h2>Please pick a playlist to start</h2>
-				</div> */}
+				</div>
 			</div>
 		</div>
 	)

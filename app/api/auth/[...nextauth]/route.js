@@ -36,9 +36,9 @@ export const authOptions = {
       authorization: loginUrl
     }),
   ],
-  secret: process.env.JWT_SECRET,
+  secret: process.env.NEXTAUTH_SECRET,
   pages: {
-    // signIn: '/login'
+    signIn: '/login'
   },
   callbacks: {
     // authenticate
