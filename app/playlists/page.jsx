@@ -1,5 +1,5 @@
 import fetchArtist from '../fetchArtist'
-import ArtistCard from '../ArtistCard'
+import ArtistCard from '../PlaylistCard'
 import './playlists.css'
 import '../css/components/card.css'
 

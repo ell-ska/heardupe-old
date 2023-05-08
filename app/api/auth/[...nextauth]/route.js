@@ -46,6 +46,7 @@ export const authOptions = {
 
       // on initial sign in
       if (account && user) {
+        console.log('sign in complete')
         return {
           ...token,
           accessToken: account.access_token,
@@ -66,15 +67,15 @@ export const authOptions = {
       console.log('token is expired')
       return await refreshAccessToken(token)
 
-    }
-  },
-  // allow the user access to this data
-  async session({ session, token }) {
-    session.user.accessToken = token.accessToken
-    session.user.refreshToken = token.refreshToken
-    session.user.username = token.username
+    },
+    // allow the user access to this data
+    async session({ session, token }) {
+      session.user.accessToken = token.accessToken
+      session.user.refreshToken = token.refreshToken
+      session.user.username = token.username
 
-    return session
+      return session
+    }
   }
 }
 
