@@ -4,10 +4,10 @@ import Image from 'next/image'
 import { useSession } from 'next-auth/react'
 import { useAtom } from 'jotai'
 import { statsAtom } from '../game/gameAtoms'
-import { LogoutButton } from '../AuthButtons'
+import { LogoutButton } from '@/components/AuthButtons'
 import './profile.css'
 import '../css/components/buttons.css'
-import '../css/components/card.css'
+import '../../components/css/card.css'
 
 const Profile = () => {
 	const { data: session } = useSession()

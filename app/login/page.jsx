@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import { getProviders } from 'next-auth/react'
-import { LoginButton } from '../AuthButtons'
+import { LoginButton } from '../../components/AuthButtons'
 import './login.css'
 import spotifyLogo from 'public/spotify-logo.svg'
 

@@ -2,26 +2,28 @@
 	flex: 1 0 auto;
 	display: grid;
 	grid-template-columns: var(--grid-container);
-	margin-top: 2rem;
+	margin: 2rem 0 4rem;
 }
 
 .playlists__inner {
 	grid-column: 2;
-	display: grid;
-	grid-template-columns: repeat(4, 1fr);
 }
 
-.playlist__section:not(:nth-of-type(1)) {
+.section:not(:nth-of-type(1)) {
 	margin-top: 4rem;
 }
 
-.playlist__title {
+.section__title {
 	margin-bottom: 1.5rem;
 	font-size: var(--font-size-3);
 	font-weight: var(--font-weight-bold);
 }
 
-.playlist__gallery {
-	display: flex;
+.section__gallery {
+	display: grid;
+	grid-auto-flow: column;
+	grid-auto-columns: 12rem;
 	gap: 2rem;
+	overflow-x: scroll;
+	scroll-snap-type: x mandatory;
 }

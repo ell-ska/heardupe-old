@@ -1,11 +1,11 @@
-.home-playlists {
+.playlist-gallery {
 	flex: 1 0 auto;
 	display: grid;
 	grid-template-columns: var(--grid-container);
 	margin: 2rem 0 4rem;
 }
 
-.home-playlists__inner {
+.playlist-gallery__inner {
 	grid-column: 2;
 	display: flex;
 	flex-direction: column;
@@ -13,7 +13,7 @@
 	gap: 4rem;
 }
 
-.home-playlists__gallery {
+.playlist-gallery__gallery {
 	display: grid;
 	grid-template-columns: repeat(4, 1fr);
     gap: 2rem;

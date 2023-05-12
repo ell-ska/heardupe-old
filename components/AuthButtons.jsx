@@ -1,6 +1,6 @@
 'use client'
 import { signIn, signOut } from 'next-auth/react'
-import './css/components/buttons.css'
+import '../app/css/components/buttons.css'
 
 const LoginButton = ({ name, id }) => {
     return (

@@ -4,6 +4,7 @@
     background-color: var(--color-primary-800);
     transition: background-color .3s;
     min-width: 0;
+    scroll-snap-align: start;
 }
 
 .card:hover {
@@ -38,6 +39,7 @@
 .card__image img {
     border-radius: 4px;
     aspect-ratio: 1 / 1;
+    object-fit: cover;
 }
 
 .card__title {

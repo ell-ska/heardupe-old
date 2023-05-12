@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import notFoundImage from '../public/404.svg'
+import notFoundImage from 'public/404.svg'
 import './css/variables.css'
 import './css/base.css'
 import './css/components/buttons.css'
@@ -14,7 +14,7 @@ export default function NotFound() {
 				<h2>It looks like you got lost in the music!</h2>
 				<h3>No, I&apos;m serious. This page doesn&apos;t exist.</h3>
 				<Link href="/">
-					<button>Get yourself home</button>
+					<button className='button'>Get yourself home</button>
 				</Link>
 			</div>
 		</div>

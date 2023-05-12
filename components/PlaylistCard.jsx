@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import playIcon from '../public/play-card.svg'
+import playIcon from 'public/play-card.svg'
+import './css/card.css'
 
 const PlaylistCard = ({ featured, name, images, description }) => {
 	return (
