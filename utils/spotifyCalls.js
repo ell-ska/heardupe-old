@@ -20,6 +20,13 @@ const getUserPlaylists = async (limit) => {
     return data.body.items
 }
 
+const getPlaylistTracks = async (id) => {
+    await authenticate()
+
+    const data = await spotifyApi.getPlaylistTracks(id)
+    return data.body.items
+}
+
 const getTopArtists = async (limit) => {
     await authenticate()
 
@@ -27,4 +34,12 @@ const getTopArtists = async (limit) => {
     return data.body.items
 }
 
-export { getUserPlaylists, getTopArtists }
+const getArtistTopTracks = async (id) => {
+    await authenticate()
+
+    const user = await spotifyApi.getMe()
+    const data = await spotifyApi.getArtistTopTracks(id, user.body.country)
+    return data.body.tracks
+}
+
+export { getUserPlaylists, getPlaylistTracks, getTopArtists, getArtistTopTracks }

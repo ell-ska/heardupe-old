@@ -5,8 +5,8 @@ import Link from 'next/link'
 import { useAtom } from 'jotai'
 import { stageAtom, gameStatusAtom, statsAtom } from './gameAtoms'
 import gameOver from './gameOver'
-import playIcon from '../../public/play.svg'
-import pauseIcon from '../../public/pause.svg'
+import playIcon from 'public/play.svg'
+import pauseIcon from 'public/pause.svg'
 import './music-player.css'
 
 const MusicPlayer = ({ currentSongUrl, currentSongSpotifyLink }) => {

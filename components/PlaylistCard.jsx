@@ -3,9 +3,9 @@ import Image from 'next/image'
 import playIcon from 'public/play-card.svg'
 import './css/card.css'
 
-const PlaylistCard = ({ featured, name, images, description }) => {
+const PlaylistCard = ({ featured, name, images, description, id, type }) => {
 	return (
-		<Link href="./game" className={featured ? 'card card--big' : 'card'}>
+		<div className={featured ? 'card card--big' : 'card'}>
 			<div className="card__image">
 				<Image
 					src={images[0].url}
@@ -13,14 +13,14 @@ const PlaylistCard = ({ featured, name, images, description }) => {
 					width={images[0].width || 640}
 					height={images[0].height || 640}
 				></Image>
-				<button>
+				<Link href={`./${type}/${id}`}>
 					<Image src={playIcon} alt="Play"></Image>
-				</button>
+				</Link>
 			</div>
 			{featured && <span className="card__featured">Featured</span>}
 			<h3 className="card__title">{name}</h3>
             {description && <p className="card__desc">{description}</p>}
-		</Link>
+		</div>
 	)
 }
 
