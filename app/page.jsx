@@ -7,7 +7,8 @@ import staticImage from 'public/placeholder.jpg'
 const Home = async () => {
 
 	const staticPlaylist = {
-		id: '12345',
+		id: '0NB5HROxc8dDBXpkIi1v3d',
+		type: 'artist',
 		description: 'Indie pop, indie r&b, modern alternative pop',
 		name: 'Remi Wolf',
 		images: [{

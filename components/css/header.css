@@ -21,55 +21,9 @@
     transition: background-color .3s;
 }
 
-.menu__item:first-of-type:not(.menu__item--active) {
-    margin-left: 1rem;
-}
-
-.menu__item:first-of-type a {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-}
-
 .menu__item--active {
     margin-inline: -1rem;
     padding: .5rem 1rem;
     border-radius: 50vh;
     background-color: var(--color-primary-600);
-}
-
-.menu__item:first-of-type.menu__item--active {
-    margin-inline: 0 -1rem;
-}
-
-.menu__item span {
-    opacity: 0;
-    pointer-events: none;
-    user-select: none;
-}
-
-.menu__item--easter-egg a {
-    animation: easter-egg 2s ease-out forwards;
-}
-
-.menu__item--easter-egg {
-    background: var(--color-primary-900);
-}
-
-@keyframes easter-egg {
-    10% {
-        transform: rotate(10deg);
-    } 20% {
-        transform: rotate(-10deg);
-    } 30% {
-        transform: rotate(10deg);
-    } 40% {
-        transform: rotate(-10deg);
-    } 50% {
-        opacity: 1;
-        transform: translate3d(20px, 0, 0) scaleX(0.9);
-    } 100% {
-        opacity: 0;
-        transform: translate3d(-2000px, 0, 0) scaleX(2);
-    }
 }
