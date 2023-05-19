@@ -17,7 +17,7 @@ const HomePlaylists = ({ playlists }) => {
         <div className="playlist-gallery">
             <div className="playlist-gallery__inner">
                 <div className="playlist-gallery__gallery">
-                    {playlists.map(playlist => {
+                    {playlists && playlists.map(playlist => {
                         return <PlaylistCard key={playlist.id} {...playlist} />
                     })}
                 </div>

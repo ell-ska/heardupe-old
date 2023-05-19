@@ -5,12 +5,12 @@ import playIcon from 'public/play.svg'
 import pauseIcon from 'public/pause.svg'
 import './music-player.css'
 
-const MusicPlayer = ({ currentSongUrl, gameOver, stage }) => {
+const MusicPlayer = ({ currentSongUrl, levelEnded, stage }) => {
 	// https://www.youtube.com/watch?v=sqpg1qzJCGQ
 
-    const secondsToPlay = gameOver ? stage.seconds.at(-1) : stage.seconds[stage.number - 1]
+    const secondsToPlay = levelEnded ? stage.seconds.at(-1) : stage.seconds[stage.number - 1]
 	const stagePercentages = [6.25, 12.5, 25, 43.75, 68.75, 100]
-    const unlockedStagePercentage = gameOver ? stagePercentages.at(-1) : stagePercentages[stage.number - 1]
+    const unlockedStagePercentage = levelEnded ? stagePercentages.at(-1) : stagePercentages[stage.number - 1]
 
 	const [isPlaying, setIsPlaying] = useState(false)
 	const [currentDisplayTime, setCurrentDisplayTime] = useState(0)

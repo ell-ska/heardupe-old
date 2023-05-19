@@ -4,20 +4,21 @@ import { useAtom } from 'jotai'
 import { statsAtom } from './gameAtoms'
 import MusicPlayer from './MusicPlayer'
 import { SkipButton, NextLevelButton } from './GameButtons'
-import WinnerScreen from './WinnerScreen'
+import EndScreen from './EndScreen'
 import gameOver from './gameOver'
 
-const GameBoard = ({ playlist, type }) => {
+const GameBoard = ({ playlist, tracks, type }) => {
 
     const [statistics, setStatistics] = useAtom(statsAtom)
     const [gameStatus, setGameStatus] = useState({
-        gameOver: false,
-        gameOutcome: '',
-        finalScore: ''
+        levelEnded: false,
+        levelOutcome: '',
+        levelScore: '',
+        gameEnded: false
     })
 
     const [level, setLevel] = useState(0)
-    const currentSong = type === 'playlist' ? playlist[level].track : playlist[level]
+    const currentSong = type === 'playlist' ? tracks[level].track : tracks[level]
 
     const [stage, setStage] = useState({
         number: 1,
@@ -49,8 +50,7 @@ const GameBoard = ({ playlist, type }) => {
         }
     ])
 
-    // FIX: "hard" reset when leaving a game (reset levels)
-    const resetGame = () => {
+    const resetGame = (type) => {
         guesses.map(guess => {
             guess.value = ''
             delete guess.skipped
@@ -62,19 +62,26 @@ const GameBoard = ({ playlist, type }) => {
         })
 
         setGameStatus({
-            gameOver: false,
-            gameOutcome: '',
-            finalScore: ''
+            levelEnded: false,
+            levelOutcome: '',
+            levelScore: ''
         })
+
+        if (type === 'level') {
+            setLevel(0)
+        }
     }
 
     const handleFinalScore = () => {
-        console.log('final')
+        setGameStatus({
+            ...gameStatus,
+            gameEnded: true
+        })
     }
 
     const handleNextLevel = () => {
-        if (gameStatus.gameOver === false) {
-            const [newStatus, newStatistics] = gameOver('lost', currentScore, statistics)
+        if (gameStatus.levelEnded === false) {
+            const [newStatus, newStatistics] = gameOver({ outcome: 'lost', currentScore, statistics })
             setGameStatus(newStatus)
             setStatistics(newStatistics)
         } else {
@@ -96,7 +103,7 @@ const GameBoard = ({ playlist, type }) => {
 
             if (inputValue.toLowerCase() === currentSong.name.toLowerCase()) {
 
-                const [newStatus, newStatistics] = gameOver('won', currentScore, statistics)
+                const [newStatus, newStatistics] = gameOver({ outcome: 'won', currentScore, statistics })
                 setGameStatus(newStatus)
                 setStatistics(newStatistics)
 
@@ -110,7 +117,7 @@ const GameBoard = ({ playlist, type }) => {
                 setGuesses([...guesses])
 
                 if (stage.number >= 6) {
-                    const [newStatus, newStatistics] = gameOver('lost', currentScore, statistics)
+                    const [newStatus, newStatistics] = gameOver({ outcome: 'lost', currentScore, statistics })
                     setGameStatus(newStatus)
                     setStatistics(newStatistics)
                 }
@@ -130,7 +137,7 @@ const GameBoard = ({ playlist, type }) => {
             currentGuess.skipped = true
 
             if (stage.number >= 6) {
-                const [newStatus, newStatistics] = gameOver('lost', currentScore, statistics)
+                const [newStatus, newStatistics] = gameOver({ outcome: 'lost', currentScore, statistics })
                 setGameStatus(newStatus)
                 setStatistics(newStatistics)
             }
@@ -147,15 +154,17 @@ const GameBoard = ({ playlist, type }) => {
         <>
             <div className="game">
                 <div className="game__inner">
-                    {gameStatus.gameOver ? 
-                        <WinnerScreen
-                            outcome={gameStatus.gameOutcome}
+                    {gameStatus.levelEnded || gameStatus.gameEnded ? 
+                        <EndScreen
+                            gameEnded={gameStatus.gameEnded}
+                            playlist={playlist}
+                            levelOutcome={gameStatus.levelOutcome}
                             seconds={stage.seconds[stage.number - 1]}
                             image={currentSong.album.images[0]}
                             title={currentSong.name}
                             name={currentSong.artists[0].name}
                             release={currentSong.album.release_date.slice(0, 4)}
-                        ></WinnerScreen> : 
+                        /> : 
                         <>
                             <div className="game__score">
                                 <div>Song: {level + 1}/10</div>
@@ -176,18 +185,23 @@ const GameBoard = ({ playlist, type }) => {
                 <SkipButton
                     stage={stage}
                     handleNextStage={handleNextStage}
-                    gameOver={gameStatus.gameOver}
+                    levelEnded={gameStatus.levelEnded}
+                    gameEnded={gameStatus.gameEnded}
                     currentSongSpotifyLink={currentSong.external_urls.spotify}
                 />
-                <MusicPlayer
-                    currentSongUrl={currentSong.preview_url}
-                    stage={stage}
-                    gameOver={gameStatus.gameOver}
-                />
+                {!gameStatus.gameEnded &&
+                    <MusicPlayer
+                        currentSongUrl={currentSong.preview_url}
+                        stage={stage}
+                        levelEnded={gameStatus.levelEnded}
+                    />
+                }
                 <NextLevelButton
                     handleNextLevel={handleNextLevel}
                     level={level}
+                    gameEnded={gameStatus.gameEnded}
                     handleFinalScore={handleFinalScore}
+                    resetGame={resetGame}
                 />
             </div>
         </>

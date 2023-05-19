@@ -1,14 +1,14 @@
-const gameOver = (outcome, score, stats) => {
+const gameOver = ({ outcome, currentScore, statistics }) => {
 	const newGameStatus = {
-		gameOver: true,
-		gameOutcome: outcome,
-		finalScore: score,
+		levelEnded: true,
+		levelOutcome: outcome,
+		levelScore: currentScore,
 	}
 
 	const newGameStats = {
-		totalScore: stats.totalScore + score,
-		highScore: score >= stats.highScore ? score : stats.highScore,
-		gamesPlayed: stats.gamesPlayed + 1,
+		totalScore: statistics.totalScore + currentScore,
+		highScore: currentScore >= statistics.highScore ? currentScore : statistics.highScore,
+		gamesPlayed: statistics.gamesPlayed + 1,
 	}
 
 	return [newGameStatus, newGameStats]

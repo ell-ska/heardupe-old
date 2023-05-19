@@ -42,36 +42,75 @@
 	white-space: nowrap;
 }
 
-.game-over {
+.level-ended {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 }
 
-.game-over h3,
-.game-over__song {
+.level-ended h3,
+.level-ended__song {
 	font-size: var(--font-size-3);
 	font-weight: bold;
 }
 
-.game-over h3 {
+.level-ended h3 {
 	margin-bottom: 10px;
 }
 
-.game-over img {
+.level-ended img {
 	margin-block: 1.5rem;
 	max-width: 18rem;
 	height: 100%;
 }
 
-.game-over__song {
+.level-ended__song {
 	margin-bottom: 2px;
 }
 
-.game-over__artist {
+.level-ended__artist {
 	margin-bottom: 4px;
 }
 
-.game-over__year {
+.level-ended__year {
 	color: var(--color-primary-500);
+}
+
+.game-ended {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 2rem;
+	height: 100%;
+}
+
+.game-ended__image {
+	max-width: 22rem;
+}
+
+.game-ended__content h3 {
+	margin-bottom: 0.6875rem;
+	color: var(--color-primary-500);
+	font-size: var(--font-size-3);
+	font-weight: var(--font-weight-regular);
+}
+
+.game-ended__content h2 {
+	margin-bottom: 1.375rem;
+	font-size: var(--font-size-5);
+	font-weight: var(--font-weight-bold);
+}
+
+.game-ended__scores {
+	display: flex;
+	gap: 1.5rem;
+}
+
+.game-ended__scores h4 {
+	font-size: var(--font-size-1);
+	font-weight: var(--font-weight-regular);
+}
+
+.game-ended__scores h4 span {
+	font-weight: var(--font-weight-bold);
 }
