@@ -46,6 +46,7 @@
     height: 4px;
     border-radius: 50vh;
     background-color: var(--color-primary-600);
+    overflow: hidden;
 }
 
 .bar__unlocked {

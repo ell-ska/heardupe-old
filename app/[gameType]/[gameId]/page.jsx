@@ -1,6 +1,5 @@
 import { getPlaylistTracks, getArtistTopTracks } from '@/utils/spotifyCalls'
 import GameBoard from './GameBoard'
-import MusicPlayer from './MusicPlayer'
 import './game.css'
 import '../../css/components/buttons.css'
 import '../../css/components/input.css'
@@ -9,11 +8,17 @@ const Game = async ({ params }) => {
 	const { gameType: type, gameId: id } = params
 	let playlist
 
+	const shuffle = (array) => {
+		return array.sort(() => 0.5 - Math.random())
+	}
+
 	try {
 		if (type === 'playlist') {
 			playlist = await getPlaylistTracks(id)
+			playlist = shuffle(playlist)
 		} else if (type === 'artist') {
 			playlist = await getArtistTopTracks(id)
+			playlist = shuffle(playlist)
 		} else {
 			throw { body: 'Not an avaliable type' }
 		}
@@ -30,16 +35,7 @@ const Game = async ({ params }) => {
 
 	return (
 		<div className="main">
-			{/* <GameBoard
-				currentSongTitle={currentSongTitle}
-				currentArtistName={currentArtistName}
-				currentSongImage={currentSongImage}
-				currentSongReleaseDate={currentSongReleaseDate}
-			></GameBoard>
-			<MusicPlayer
-				currentSongUrl={currentSongUrl}
-				currentSongSpotifyLink={currentSongSpotifyLink}
-			></MusicPlayer> */}
+			<GameBoard playlist={playlist} type={type} />
 		</div>
 	)
 }
