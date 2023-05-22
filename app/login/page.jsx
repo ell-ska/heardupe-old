@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { Climate_Crisis } from '@next/font/google'
+import { Climate_Crisis } from 'next/font/google'
 import { getProviders } from 'next-auth/react'
 import { LoginButton } from '../../components/AuthButtons'
 import './login.css'
