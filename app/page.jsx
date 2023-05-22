@@ -1,4 +1,4 @@
-import { Climate_Crisis } from '@next/font/google'
+import { Climate_Crisis } from 'next/font/google'
 import { getUserPlaylists } from '@/utils/spotifyCalls'
 import PlaylistGallery from '../components/PlaylistGallery'
 import PlaylistCard from '../components/PlaylistCard'
