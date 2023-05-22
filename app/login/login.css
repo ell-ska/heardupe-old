@@ -29,11 +29,9 @@
 }
 
 .login__branding h2 {
-    font-family: var(--font-branding);
     font-size: var(--font-size-6);
 }
 
 .login__branding span {
-    font-family: var(--font-branding);
     font-size: var(--font-size-4);
 }

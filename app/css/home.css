@@ -23,7 +23,6 @@
 
 .hero__text h1 {
     margin-bottom: 7px;
-    font-family: var(--font-branding);
     font-size: var(--font-size-6);
     font-weight: var(--font-weight-regular);
 }

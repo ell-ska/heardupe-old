@@ -10,8 +10,8 @@
     --color-accent: #1ED760;
     --color-shadow: #18181840;
 
-    --font-primary: "Lexend", sans-serif;
-    --font-branding: "Climate Crisis", "Lexend", sans-serif;
+    /* --font-primary: "Lexend", sans-serif;
+    --font-branding: "Climate Crisis", "Lexend", sans-serif; */
     --font-base: 16px;
     --font-scale: 1.25;
     --font-size-0: calc(var(--font-base) / var(--font-scale));

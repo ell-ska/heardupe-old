@@ -1,8 +1,14 @@
+import { Climate_Crisis } from '@next/font/google'
 import { getUserPlaylists } from '@/utils/spotifyCalls'
 import PlaylistGallery from '../components/PlaylistGallery'
 import PlaylistCard from '../components/PlaylistCard'
 import './css/home.css'
 import staticImage from 'public/placeholder.jpg'
+
+const climateCrisis = Climate_Crisis({
+	subsets: ['latin'],
+	weight: '400'
+})
 
 const Home = async () => {
 
@@ -36,7 +42,7 @@ const Home = async () => {
 					></PlaylistCard>
 					<div className="hero__text">
 						<span>Hello, and welcome to</span>
-						<h1>Heardupe</h1>
+						<h1 className={climateCrisis.className}>Heardupe</h1>
 						<h2>Please pick a playlist to start</h2>
 					</div>
 				</div>

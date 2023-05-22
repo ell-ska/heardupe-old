@@ -48,6 +48,7 @@
 }
 
 .card__desc {
+    margin-top: .5rem;
     color: var(--color-primary-500);
     font-size: var(--font-size-0);
     line-height: 1rem;
