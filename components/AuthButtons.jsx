@@ -5,7 +5,7 @@ import '../app/css/components/buttons.css'
 
 const LoginButton = ({ name, id }) => {
 
-    const baseUrl = location?.origin
+    // const baseUrl = location?.origin
     const callbackUrl = useSearchParams().get('callbackUrl')
 
     // console.log(baseUrl + callback)
@@ -13,7 +13,7 @@ const LoginButton = ({ name, id }) => {
     return (
         <button
             className='button'
-            onClick={() => signIn(id, { callbackUrl: `${baseUrl}${callbackUrl}` })}
+            onClick={() => signIn(id, { callbackUrl: callbackUrl })}
         >Login with {name}</button>
     )   
 }
