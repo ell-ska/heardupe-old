@@ -11,7 +11,6 @@ import '../../components/css/card.css'
 
 const Profile = () => {
 	const { data: session } = useSession()
-	console.log(session)
 	// const [stats] = useAtom(statsAtom)
 
 	// useEffect(() => {

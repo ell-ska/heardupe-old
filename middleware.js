@@ -9,5 +9,5 @@ export default withAuth(
 )
 
 export const config = {
-  matcher: ['/profile', '/playlists']
+  matcher: ['/:path+']
 }

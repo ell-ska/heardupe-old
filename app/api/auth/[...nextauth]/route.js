@@ -75,7 +75,7 @@ export const authOptions = {
       session.user.username = token.username
 
       return session
-    }
+    },
   }
 }
 

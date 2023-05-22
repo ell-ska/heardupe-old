@@ -1,6 +1,3 @@
-/* Typography */
-@import url('https://fonts.googleapis.com/css2?family=Climate+Crisis&family=Lexend:wght@400;700&display=swap');
-
 /* Resets */
 *, *::before, *::after {
     margin: 0;
@@ -13,7 +10,6 @@
 body {
     background-color: var(--color-primary-900);
     color: var(--color-secondary);
-    font-family: var(--font-primary);
     overflow-x: hidden;
 }
 
