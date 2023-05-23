@@ -7,7 +7,7 @@ import './css/base.css'
 
 export const metadata = {
   title: 'Heardupe',
-  description: "A dupe of Spotify's music quiz Heardle",
+  description: 'A dupe of Spotify\'s music quiz Heardle',
   icons: {
     icon: '/favicon.svg'
   }
