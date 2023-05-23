@@ -22,7 +22,7 @@ const Login = async () => {
                     <Image src={spotifyLogo} alt="Spotify Logo"></Image>
                     {/* ADD: explanation text */}
                 </div>
-                {providers && Object.values(providers).map(provider => {
+                {Object.values(providers).map(provider => {
                     return <LoginButton key={provider.id} {...provider}></LoginButton>
                 })}
             </div>
