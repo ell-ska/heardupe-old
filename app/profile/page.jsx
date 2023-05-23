@@ -5,6 +5,7 @@ import { useSession } from 'next-auth/react'
 import { useAtom } from 'jotai'
 // import { statsAtom } from '../[game-type]/gameAtoms'
 import { LogoutButton } from '@/components/AuthButtons'
+import placeholder from 'public/profile-placeholder.jpg'
 import './profile.css'
 import '../css/components/buttons.css'
 import '../../components/css/card.css'
@@ -22,7 +23,7 @@ const Profile = () => {
 			<div className="profile__inner">
 				<div className="account">
 					<div className="account__image">
-						<Image src={session?.user.image} alt='Profile picture' height={112} width={112}></Image>
+						<Image src={session.user.image || placeholder} alt='Profile picture' height={112} width={112}></Image>
 					</div>
 					<div className="account__buttons">
 						<button className='button button--small--outline'>Delete account</button>

@@ -4,7 +4,12 @@ const nextConfig = {
     appDir: true,
   },
   images: {
-    domains: ['i.scdn.co', 'mosaic.scdn.co']
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '**.scdn.co'
+      }
+    ]
   }
 }
 

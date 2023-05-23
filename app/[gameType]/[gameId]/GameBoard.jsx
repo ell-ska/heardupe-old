@@ -199,6 +199,7 @@ const GameBoard = ({ playlist, tracks, type }) => {
                 <NextLevelButton
                     handleNextLevel={handleNextLevel}
                     level={level}
+                    levelEnded={gameStatus.levelEnded}
                     gameEnded={gameStatus.gameEnded}
                     handleFinalScore={handleFinalScore}
                     resetGame={resetGame}

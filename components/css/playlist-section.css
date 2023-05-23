@@ -1,0 +1,18 @@
+.section:not(:nth-of-type(1)) {
+	margin-top: 4rem;
+}
+
+.section__title {
+	margin-bottom: 1.5rem;
+	font-size: var(--font-size-3);
+	font-weight: var(--font-weight-bold);
+}
+
+.section__gallery {
+	display: grid;
+	grid-auto-flow: column;
+	grid-auto-columns: 12rem;
+	gap: 2rem;
+	overflow-x: scroll;
+	scroll-snap-type: x mandatory;
+}
