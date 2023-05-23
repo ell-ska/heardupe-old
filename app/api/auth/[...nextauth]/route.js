@@ -71,7 +71,6 @@ export const authOptions = {
     // allow the user access to this data
     async session({ session, token }) {
       session.user.accessToken = token.accessToken
-      session.user.refreshToken = token.refreshToken
       session.user.username = token.username
 
       return session
