@@ -1,7 +1,10 @@
 'use client'
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useAtom } from 'jotai'
 import { statsAtom } from './gameAtoms'
+import useSpotify from '@/hooks/useSpotify'
+import useDebounce from '@/hooks/useDebounce'
+import Search from './Search'
 import MusicPlayer from './MusicPlayer'
 import { SkipButton, NextLevelButton } from './GameButtons'
 import EndScreen from './EndScreen'
@@ -50,7 +53,31 @@ const GameBoard = ({ playlist, tracks, type }) => {
         }
     ])
 
+    const gameInput = useRef()
+
+    const spotifyApi = useSpotify()
+
+	const [search, setSearch] = useState('')
+	const debouncedSearch = useDebounce(search, 300)
+	const [searchResults, setSearchResults] = useState(null)
+
+	const getSearch = async (query) => {
+		try {
+			const data = await spotifyApi.searchTracks(query, {limit: 5})
+			setSearchResults(data.body.tracks.items)
+		} catch (error) {
+			console.log(error)
+		}
+	}
+
+	useEffect(() => {
+		if (!search) return setSearchResults(null)
+		getSearch(search)
+	}, [debouncedSearch])
+
     const resetGame = (type) => {
+        setSearch('')
+
         guesses.map(guess => {
             guess.value = ''
             delete guess.skipped
@@ -90,29 +117,32 @@ const GameBoard = ({ playlist, tracks, type }) => {
         }
     }
 
-    const handleNextStage = (type, event) => {
+    const handleNextStage = ({ type, event, id, name, artists }) => {
+        // console.log(artists)
+        // WHY I ARTISTS UNDEFINED?
+        // no duplicate guesses
 
         if (type === 'guess') {
             event.preventDefault()
 
-            let inputValue = event.target.elements.guess.value
-
-            if (inputValue.length === 0) {
-                return
-            }
-
-            if (inputValue.toLowerCase() === currentSong.name.toLowerCase()) {
+            if (id === currentSong.id) {
 
                 const [newStatus, newStatistics] = gameOver({ outcome: 'won', currentScore, statistics })
                 setGameStatus(newStatus)
                 setStatistics(newStatistics)
 
+            } else if (guesses.find(guess => guess.id === id)) {
+                console.log('duplicate')
             } else {
     
                 const currentGuess = guesses.find(guess => guess.number === stage.number)
-                currentGuess.value = inputValue
+                // currentGuess.value = `${name} - ${artists.map(artist => artist.name).join(', ')}`
+                currentGuess.value = name
+                currentGuess.id = id
 
-                event.target.elements.guess.value = ''
+                // remove debounce
+                setSearch('')
+                gameInput.current.value = ''
                 
                 setGuesses([...guesses])
 
@@ -150,6 +180,10 @@ const GameBoard = ({ playlist, tracks, type }) => {
         }
     }
 
+    const handleSearchInputChange = (event) => {
+        setSearch(event.target.value)
+    }
+
     return (
         <>
             <div className="game">
@@ -162,7 +196,7 @@ const GameBoard = ({ playlist, tracks, type }) => {
                             seconds={stage.seconds[stage.number - 1]}
                             image={currentSong.album.images[0]}
                             title={currentSong.name}
-                            name={currentSong.artists[0].name}
+                            artists={currentSong.artists}
                             release={currentSong.album.release_date.slice(0, 4)}
                         /> : 
                         <>
@@ -171,9 +205,14 @@ const GameBoard = ({ playlist, tracks, type }) => {
                                 <div>Score: {currentScore}</div>
                                 <div>High Score: {statistics.highScore}</div>
                             </div>
-                            <form className='game__guesser' action="" autoComplete='off' onSubmit={e => handleNextStage('guess', e)}>
-                                <input type="text" name="guess" placeholder='Guess the song title'/>
-                            </form>
+                            <Search
+                                ref={gameInput}
+                                // search={search}
+                                // setSearch={setSearch}
+                                searchResults={searchResults}
+                                handleSearchInputChange={handleSearchInputChange}
+                                handleNextStage={handleNextStage}
+                            ></Search>
                             <div className="game__guesses">
                                 {guesses.map(({ number, value, skipped }) => <div key={number}>{number}. <span style={skipped ? {color: 'var(--color-primary-500)'} : null}>{value}</span></div>)}
                             </div>

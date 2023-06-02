@@ -17,7 +17,6 @@ const Search = () => {
 		try {
 			const data = await spotifyApi.search(query, ['artist', 'playlist'])
 			setSearchResults(data.body)
-			console.log(data.body.playlists.items)
 		} catch (error) {
 			console.log(error)
 		}

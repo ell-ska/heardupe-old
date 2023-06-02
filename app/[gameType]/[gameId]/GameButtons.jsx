@@ -12,7 +12,7 @@ const SkipButton = ({ stage, handleNextStage, levelEnded, gameEnded, currentSong
         return (
             <button
                     className="button"
-                    onClick={() => handleNextStage('skipped')}
+                    onClick={() => handleNextStage({ type: 'skipped' })}
             >Skip {stage.number < 6 ? `(+${stage.number}s)` : null}</button>
         )
     }
