@@ -4,6 +4,7 @@
 		"no-unused-vars": ["warn", { "vars": "all", "args": "after-used", "ignoreRestSiblings": false }],
 		"no-multiple-empty-lines": ["warn", { "max": 1, "maxEOF": 1, "maxBOF": 0 }],
 		"quotes": ["warn", "single"],
-		"no-undef": "off"
+		"no-undef": "off",
+		"react-hooks/exhaustive-deps": "off"
 	}
 }

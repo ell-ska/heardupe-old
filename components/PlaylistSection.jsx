@@ -1,4 +1,5 @@
 import PlaylistCard from './PlaylistCard'
+import './css/playlist-section.css'
 
 const PlaylistSection = ({ title, playlists }) => {
     return (

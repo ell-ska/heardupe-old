@@ -1,8 +1,8 @@
 import Image from 'next/image'
 
-const EndScreen = ({ gameEnded, playlist, levelOutcome, seconds, image, title, name, release }) => {
+const EndScreen = ({ gameEnded, playlist, levelOutcome, seconds, image, title, artists, release }) => {
 	const exclamation = levelOutcome === 'won' ? 'Amazing!' : 'You lost!'
-    const message = levelOutcome === 'won' ? `You got the song from ${seconds} seconds` : "You can't know them all..."
+    const message = levelOutcome === 'won' ? `You got the song from ${seconds} seconds` : 'You can\'t know them all...'
 
 	const LevelEndedScreen = () => {
 		return (
@@ -13,10 +13,10 @@ const EndScreen = ({ gameEnded, playlist, levelOutcome, seconds, image, title, n
 					src={image.url}
 					width={image.width}
 					height={image.height}
-					alt={`album cover from ${name}`}
+					alt={`album cover for ${title}`}
 				></Image>
 				<h4 className="level-ended__song">{title}</h4>
-				<span className="level-ended__artist">{name}</span>
+				<span className="level-ended__artist">{artists.map(artist => artist.name).join(', ')}</span>
 				<span className="level-ended__year">{release}</span>
 			</div>
 		)

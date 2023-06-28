@@ -15,6 +15,11 @@
 	grid-column: 2;
 }
 
+.game__guesser {
+	position: relative;
+	isolation: isolate;
+}
+
 .game__score {
 	display: flex;
 	justify-content: space-between;
@@ -40,6 +45,36 @@
 .game-footer .button--outline {
 	margin: 1.5rem;
 	white-space: nowrap;
+}
+
+.search-results {
+	position: absolute;
+	top: calc(100% + .5rem);
+	right: 0;
+	left: 0;
+	z-index: -1;
+	display: flex;
+	flex-direction: column;
+	padding: .75rem 0;
+	border-radius: .5rem;
+	background-color: var(--color-primary-800);
+	color: var(--color-primary-500);
+	list-style: none;
+}
+
+.search-results__song {
+	width: 100%;
+	padding: .75rem 2rem;
+	text-align: start;
+}
+
+.search-results__song--active,
+.search-results__song:hover,
+.search-results__song:focus,
+.search-results__song:focus-visible {
+	outline: none;
+	background-color: var(--color-primary-700);
+	color: var(--color-secondary);
 }
 
 .level-ended {
@@ -70,6 +105,7 @@
 
 .level-ended__artist {
 	margin-bottom: 0.25rem;
+	text-align: center;
 }
 
 .level-ended__year {

@@ -4,7 +4,7 @@ import PlaylistCard from './PlaylistCard'
 import './css/playlist-gallery.css'
 import '../app/css/components/buttons.css'
 
-const HomePlaylists = ({ playlists }) => {
+const PlaylistGallery = ({ playlists }) => {
 
     const maxPlaylistsToShow = 49
     const [playlistsToShow, setPlaylistsToShow] = useState(13)
@@ -28,4 +28,4 @@ const HomePlaylists = ({ playlists }) => {
     )
 }
 
-export default HomePlaylists
+export default PlaylistGallery
