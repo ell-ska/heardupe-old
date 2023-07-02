@@ -1,5 +1,8 @@
 :root {
-    --grid-container: clamp(1.5rem, -4.662rem + 26.2911vw, 19rem) minmax(0, 54rem) clamp(1.5rem, -4.662rem + 26.2911vw, 19rem);
+    /* --grid-container: clamp(1.5rem, -4.662rem + 26.2911vw, 19rem) minmax(0, 54rem) clamp(1.5rem, -4.662rem + 26.2911vw, 19rem); */
+    --container-max-width: 54rem;
+    --container-width: 75%;
+    --container-margin: 1.5rem;
 
     --color-primary-900: #181818;
     --color-primary-800: #2A2A2A;
@@ -23,4 +26,12 @@
     --font-size-6: calc(var(--font-size-5) * var(--font-scale));
     --font-weight-regular: 400;
     --font-weight-bold: 700;
+}
+
+@media (max-width: 768px) {
+
+    :root {
+        --container-width: 100%;
+    }
+
 }

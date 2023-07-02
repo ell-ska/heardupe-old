@@ -1,10 +1,6 @@
 .playlists {
-	flex: 1 0 auto;
-	display: grid;
-	grid-template-columns: var(--grid-container);
 	margin: 2rem 0 4rem;
-}
-
-.playlists__inner {
-	grid-column: 2;
+	padding-inline: var(--container-margin);
+    max-width: var(--container-max-width);
+    width: var(--container-width);
 }

@@ -1,23 +1,16 @@
 .hero {
-    margin-top: 2rem;
-    flex: 1 0 auto;
     display: grid;
-    grid-template-columns: var(--grid-container);
-}
-
-.hero__inner {
-    grid-column: 2;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    justify-items: center;
-    align-content: start;
+    grid-template-columns: repeat(2, 1fr);
     gap: 2rem;
+    margin-top: 2rem;
+    padding-inline: var(--container-margin);
+    max-width: var(--container-max-width);
+    width: var(--container-width);
 }
 
 .hero__text {
     display: flex;
     flex-direction: column;
-    grid-column: span 2;
     justify-content: center;
 }
 
@@ -30,4 +23,20 @@
 .hero__text h2 {
     font-size: var(--font-size-2);
     font-weight: var(--font-weight-regular);
+}
+
+@media (max-width: 768px) {
+
+    .hero {
+        grid-template-columns: 1fr;
+    }
+
+    .hero .card {
+        order: 2;
+    }
+
+    .hero__text h1 {
+        font-size: max(var(--font-size-5), 6vw);
+    }
+
 }

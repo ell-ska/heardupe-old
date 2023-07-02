@@ -25,7 +25,6 @@ const Header = () => {
 
 	return (
 		<header className="header">
-			<div className="header__inner">
 				<nav className="menu">
 					{menuItems.map((item) => {
 						return (
@@ -36,7 +35,6 @@ const Header = () => {
 						)
 					})}
 				</nav>
-			</div>
 		</header>
 	)
 }

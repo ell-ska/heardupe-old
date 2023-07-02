@@ -1,13 +1,10 @@
 .header {
-    display: grid;
-    grid-template-columns: var(--grid-container);
-    min-height: 5rem;
-}
-
-.header__inner {
-    grid-column: 2;
     display: flex;
     align-items: center;
+    padding-inline: var(--container-margin);
+    min-height: 5rem;
+    max-width: var(--container-max-width);
+    width: var(--container-width);
 }
 
 .menu {

@@ -35,16 +35,14 @@ const Home = async () => {
 	return (
 		<>
 			<div className="hero">
-				<div className="hero__inner">
-					<PlaylistCard
-						{...staticPlaylist}
-						featured={true}
-					></PlaylistCard>
-					<div className="hero__text">
-						<span>Hello, and welcome to</span>
-						<h1 className={climateCrisis.className}>Heardupe</h1>
-						<h2>Please pick a playlist to start</h2>
-					</div>
+				<PlaylistCard
+					{...staticPlaylist}
+					featured={true}
+				></PlaylistCard>
+				<div className="hero__text">
+					<span>Hello, and welcome to</span>
+					<h1 className={climateCrisis.className}>Heardupe</h1>
+					<h2>Please pick a playlist to start</h2>
 				</div>
 			</div>
 			<PlaylistGallery playlists={playlists} />

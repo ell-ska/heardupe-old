@@ -61,7 +61,11 @@
     white-space: nowrap;
 }
 
-.card--big,
+.card--big {
+    padding: 2rem;
+}
+
+/* .card--big, */
 .playlist-gallery__gallery .card:nth-of-type(7),
 .playlist-gallery__gallery .card:nth-of-type(14),
 .playlist-gallery__gallery .card:nth-of-type(18n + 7),

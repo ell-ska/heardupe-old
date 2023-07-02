@@ -17,10 +17,8 @@ const Playlists = async () => {
 
 	return (
 		<div className="playlists">
-			<div className="playlists__inner">
 				{topArtists && <PlaylistSection title="Top Artists" playlists={topArtists}/>}
 				{userPlaylists && <PlaylistSection title="My Playlists" playlists={userPlaylists}/>}
-			</div>
 		</div>
 	)
 }

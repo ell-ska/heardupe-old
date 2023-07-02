@@ -20,7 +20,6 @@ const Profile = () => {
 
 	return (
 		<div className="profile">
-			<div className="profile__inner">
 				<div className="account">
 					<div className="account__image">
 						<Image src={session.user.image || placeholder} alt='Profile picture' height={112} width={112}></Image>
@@ -48,7 +47,6 @@ const Profile = () => {
 						<h3>{stats.gamesPlayed}</h3>
 					</div>
 				</div> */}
-			</div>
 		</div>
 	)
 }

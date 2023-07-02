@@ -16,3 +16,11 @@
 	overflow-x: scroll;
 	scroll-snap-type: x mandatory;
 }
+
+@media (max-width: 768px) {
+
+	.section__gallery {
+		gap: 1rem;
+	}
+
+}
