@@ -29,11 +29,7 @@ const Game = async ({ params }) => {
 		console.log(error.body)
 	}
 
-	return (
-		<div className="main">
-			<GameBoard playlist={playlist} tracks={tracks} type={type} />
-		</div>
-	)
+	return <GameBoard playlist={playlist} tracks={tracks} type={type} />
 }
 
 export default Game

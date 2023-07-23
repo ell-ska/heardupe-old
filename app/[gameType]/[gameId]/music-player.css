@@ -1,101 +1,129 @@
 .music-player {
-    width: 100%;
+	width: 100%;
 }
 
 .music-player__inner {
-    position: absolute;
-    left: 50%;
-    bottom: 1rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: .5rem;
-    max-width: 32rem;
-    width: 100%;
-    transform: translateX(-50%);
+	position: absolute;
+	left: 50%;
+	bottom: 1rem;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 0.5rem;
+	max-width: 32rem;
+	width: 100%;
+	transform: translateX(-50%);
 }
 
 .music-player__button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 3rem;
-    width: 3rem;
-    margin: 0;
-    padding: 0;
-    border-radius: 50%;
-    background-color: var(--color-secondary);
-    transition: transform .2s ease;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 3rem;
+	width: 3rem;
+	margin: 0;
+	padding: 0;
+	border-radius: 50%;
+	background-color: var(--color-secondary);
+	transition: transform 0.2s ease;
 }
 
 .music-player__button:hover {
-    transform: scale(1.1);
+	transform: scale(1.1);
 }
 
 .progress {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
-    width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 1rem;
+	width: 100%;
 }
 
 .bar {
-    position: relative;
-    width: 100%;
-    height: 4px;
-    border-radius: 50vh;
-    background-color: var(--color-primary-600);
-    overflow: hidden;
+	position: relative;
+	width: 100%;
+	height: 4px;
+	border-radius: 50vh;
+	background-color: var(--color-primary-600);
+	overflow: hidden;
 }
 
 .bar__unlocked {
-    position: absolute;
-    height: 100%;
-    width: 6.25%;
-    border-radius: 50vh 0 0 50vh;
-    background-color: var(--color-secondary);
-    overflow: hidden;
+	position: absolute;
+	height: 100%;
+	width: 6.25%;
+	border-radius: 50vh 0 0 50vh;
+	background-color: var(--color-secondary);
+	overflow: hidden;
 }
 
 .bar__current {
-    position: absolute;
-    height: 100%;
-    width: 0;
-    border-radius: 50vh 0 0 50vh;
-    background-color: var(--color-accent);
+	position: absolute;
+	height: 100%;
+	width: 0;
+	border-radius: 50vh 0 0 50vh;
+	background-color: var(--color-accent);
 }
 
 .bar__back {
-    position: absolute;
-    height: 100%;
-    width: 100%;
+	position: absolute;
+	height: 100%;
+	width: 100%;
 }
 
 .bar__line {
-    position: absolute;
-    height: 100%;
-    width: 2px;
-    background-color: var(--color-secondary);
-    transform: translateX(-50%);
+	position: absolute;
+	height: 100%;
+	width: 2px;
+	background-color: var(--color-secondary);
+	transform: translateX(-50%);
 }
 
 .bar__line:nth-of-type(1) {
-    left: 6.25%;
+	left: 6.25%;
 }
 
 .bar__line:nth-of-type(2) {
-    left: 12.5%;
+	left: 12.5%;
 }
 
 .bar__line:nth-of-type(3) {
-    left: 25%;
+	left: 25%;
 }
 
 .bar__line:nth-of-type(4) {
-    left: 43.75%;
+	left: 43.75%;
 }
 
 .bar__line:nth-of-type(5) {
-    left: 68.75%;
+	left: 68.75%;
+}
+
+@media (max-width: 768px) {
+	.music-player {
+		margin-bottom: 1rem;
+	}
+
+	.music-player__inner {
+		margin: 0 auto;
+		position: static;
+		gap: 1rem;
+		transform: translate(0);
+	}
+
+	.progress {
+		position: relative;
+		display: block;
+	}
+
+	.progress__current,
+	.progress__duration {
+		position: absolute;
+		bottom: 0.75rem;
+	}
+
+	.progress__duration {
+		right: 0;
+	}
 }

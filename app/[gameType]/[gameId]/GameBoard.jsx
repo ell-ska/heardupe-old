@@ -185,42 +185,40 @@ const GameBoard = ({ playlist, tracks, type }) => {
     }
 
     return (
-        <>
-            <div className="game">
-                <div className="game__inner">
-                    {gameStatus.levelEnded || gameStatus.gameEnded ? 
-                        <EndScreen
-                            gameEnded={gameStatus.gameEnded}
-                            playlist={playlist}
-                            levelOutcome={gameStatus.levelOutcome}
-                            seconds={stage.seconds[stage.number - 1]}
-                            image={currentSong.album.images[0]}
-                            title={currentSong.name}
-                            artists={currentSong.artists}
-                            release={currentSong.album.release_date.slice(0, 4)}
-                        /> : 
-                        <>
-                            <div className="game__score">
-                                <div>Song: {level + 1}/10</div>
-                                <div>Score: {currentScore}</div>
-                                <div>High Score: {statistics.highScore}</div>
-                            </div>
-                            <Search
-                                ref={gameInput}
-                                // search={search}
-                                // setSearch={setSearch}
-                                searchResults={searchResults}
-                                handleSearchInputChange={handleSearchInputChange}
-                                handleNextStage={handleNextStage}
-                            ></Search>
-                            <div className="game__guesses">
-                                {guesses.map(({ number, value, skipped }) => <div key={number}>{number}. <span style={skipped ? {color: 'var(--color-primary-500)'} : null}>{value}</span></div>)}
-                            </div>
-                        </>
-                    }
-                </div>
+        <div className='game'>
+            <div className="game__main">
+                {gameStatus.levelEnded || gameStatus.gameEnded ? 
+                    <EndScreen
+                        gameEnded={gameStatus.gameEnded}
+                        playlist={playlist}
+                        levelOutcome={gameStatus.levelOutcome}
+                        seconds={stage.seconds[stage.number - 1]}
+                        image={currentSong.album.images[0]}
+                        title={currentSong.name}
+                        artists={currentSong.artists}
+                        release={currentSong.album.release_date.slice(0, 4)}
+                    /> : 
+                    <>
+                        <div className="game__score">
+                            <div>Song: {level + 1}/10</div>
+                            <div>Score: {currentScore}</div>
+                            <div>High Score: {statistics.highScore}</div>
+                        </div>
+                        <Search
+                            ref={gameInput}
+                            // search={search}
+                            // setSearch={setSearch}
+                            searchResults={searchResults}
+                            handleSearchInputChange={handleSearchInputChange}
+                            handleNextStage={handleNextStage}
+                        ></Search>
+                        <div className="game__guesses">
+                            {guesses.map(({ number, value, skipped }) => <div key={number}>{number}. <span style={skipped ? {color: 'var(--color-primary-500)'} : null}>{value}</span></div>)}
+                        </div>
+                    </>
+                }
             </div>
-            <div className="game-footer">
+            <div className="game__footer">
                 <SkipButton
                     stage={stage}
                     handleNextStage={handleNextStage}
@@ -244,7 +242,7 @@ const GameBoard = ({ playlist, tracks, type }) => {
                     resetGame={resetGame}
                 />
             </div>
-        </>
+        </div>
     )
 }
 
