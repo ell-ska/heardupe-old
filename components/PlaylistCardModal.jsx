@@ -1,9 +1,5 @@
 const PlaylistCardModal = () => {
-    return (
-        <div className="modal">
-            
-        </div>
-    )
+	return <div className="modal"></div>
 }
 
 export default PlaylistCardModal

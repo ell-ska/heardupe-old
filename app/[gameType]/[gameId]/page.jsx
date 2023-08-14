@@ -1,4 +1,8 @@
-import { getPlaylist, getArtist, getArtistTopTracks } from '@/utils/spotifyCalls'
+import {
+	getPlaylist,
+	getArtist,
+	getArtistTopTracks,
+} from '@/utils/spotifyCalls'
 import GameBoard from './GameBoard'
 import './game.css'
 import '../../css/components/buttons.css'
@@ -17,9 +21,9 @@ const Game = async ({ params }) => {
 			playlist = await getPlaylist(id)
 			tracks = shuffle(playlist.tracks.items)
 		} else if (type === 'artist') {
-			[playlist, tracks] = await Promise.all([
+			;[playlist, tracks] = await Promise.all([
 				getArtist(id),
-				getArtistTopTracks(id)
+				getArtistTopTracks(id),
 			])
 			tracks = shuffle(tracks)
 		} else {

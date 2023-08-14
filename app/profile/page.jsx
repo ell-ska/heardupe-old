@@ -20,16 +20,23 @@ const Profile = () => {
 
 	return (
 		<div className="profile">
-				<div className="account">
-					<div className="account__image">
-						<Image src={session.user.image || placeholder} alt='Profile picture' height={112} width={112}></Image>
-					</div>
-					<div className="account__buttons">
-						<button className='button button--small--outline'>Delete account</button>
-						<LogoutButton></LogoutButton>
-					</div>
+			<div className="account">
+				<div className="account__image">
+					<Image
+						src={session.user.image || placeholder}
+						alt="Profile picture"
+						height={112}
+						width={112}
+					></Image>
 				</div>
-				{/* <div className="statistics">
+				<div className="account__buttons">
+					<button className="button button--small--outline">
+						Delete account
+					</button>
+					<LogoutButton></LogoutButton>
+				</div>
+			</div>
+			{/* <div className="statistics">
 					<div className="card card--stats">
 						<h2>Total score</h2>
 						<h3>{stats.totalScore}</h3>

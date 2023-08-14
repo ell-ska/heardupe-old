@@ -1,26 +1,26 @@
 .header {
-    display: flex;
-    align-items: center;
-    padding-inline: var(--container-margin);
-    min-height: 5rem;
-    max-width: var(--container-max-width);
-    width: var(--container-width);
+	display: flex;
+	align-items: center;
+	padding-inline: var(--container-margin);
+	min-height: 5rem;
+	max-width: var(--container-max-width);
+	width: var(--container-width);
 }
 
 .menu {
-    display: flex;
-    align-items: center;
-    gap: 3rem;
+	display: flex;
+	align-items: center;
+	gap: 3rem;
 }
 
 .menu__item {
-    position: relative;
-    transition: background-color .3s;
+	position: relative;
+	transition: background-color 0.3s;
 }
 
 .menu__item--active {
-    margin-inline: -1rem;
-    padding: .5rem 1rem;
-    border-radius: 50vh;
-    background-color: var(--color-primary-600);
+	margin-inline: -1rem;
+	padding: 0.5rem 1rem;
+	border-radius: 50vh;
+	background-color: var(--color-primary-600);
 }

@@ -5,21 +5,19 @@
 	gap: 4rem;
 	margin: 2rem 0 4rem;
 	padding-inline: var(--container-margin);
-    max-width: var(--container-max-width);
-    width: var(--container-width);
+	max-width: var(--container-max-width);
+	width: var(--container-width);
 }
 
 .playlist-gallery__gallery {
 	display: grid;
 	grid-template-columns: repeat(4, 1fr);
-    gap: 2rem;
+	gap: 2rem;
 }
 
 @media (max-width: 768px) {
-
 	.playlist-gallery__gallery {
 		grid-template-columns: repeat(2, 1fr);
 		gap: 1rem;
 	}
-
 }

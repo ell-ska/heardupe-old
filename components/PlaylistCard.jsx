@@ -20,7 +20,7 @@ const PlaylistCard = ({ featured, name, images, description, id, type }) => {
 			</div>
 			{featured && <span className="card__featured">Featured</span>}
 			<h3 className="card__title">{name}</h3>
-            {description && <p className="card__desc">{description}</p>}
+			{description && <p className="card__desc">{description}</p>}
 		</div>
 	)
 }

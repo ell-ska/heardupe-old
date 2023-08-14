@@ -14,7 +14,7 @@ export default function NotFound() {
 				<h2>It looks like you got lost in the music!</h2>
 				<h3>No, I&apos;m serious. This page doesn&apos;t exist.</h3>
 				<Link href="/">
-					<button className='button'>Get yourself home</button>
+					<button className="button">Get yourself home</button>
 				</Link>
 			</div>
 		</div>

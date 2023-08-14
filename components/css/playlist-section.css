@@ -18,9 +18,7 @@
 }
 
 @media (max-width: 768px) {
-
 	.section__gallery {
 		gap: 1rem;
 	}
-
 }
