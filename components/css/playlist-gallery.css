@@ -16,6 +16,11 @@
 }
 
 @media (max-width: 768px) {
+	.playlist-gallery {
+		gap: 2rem;
+		margin-bottom: 2rem;
+	}
+
 	.playlist-gallery__gallery {
 		grid-template-columns: repeat(2, 1fr);
 		gap: 1rem;

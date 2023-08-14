@@ -23,7 +23,7 @@ const Profile = () => {
 			<div className="account">
 				<div className="account__image">
 					<Image
-						src={session.user.image || placeholder}
+						src={session?.user?.image || placeholder}
 						alt="Profile picture"
 						height={112}
 						width={112}

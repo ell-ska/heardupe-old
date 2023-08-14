@@ -24,3 +24,11 @@
 	border-radius: 50vh;
 	background-color: var(--color-primary-600);
 }
+
+@media (max-width: 425px) {
+	.menu {
+		justify-content: space-between;
+		gap: 1.5rem;
+		width: 100%;
+	}
+}
