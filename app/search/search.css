@@ -1,6 +1,7 @@
 .search {
+	flex-grow: 1;
 	margin: 2rem 0 4rem;
 	padding-inline: var(--container-margin);
-    max-width: var(--container-max-width);
-    width: var(--container-width);
+	max-width: var(--container-max-width);
+	width: var(--container-width);
 }

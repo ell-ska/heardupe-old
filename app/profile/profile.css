@@ -1,8 +1,9 @@
 .profile {
+	flex-grow: 1;
 	margin-top: 2rem;
 	padding-inline: var(--container-margin);
-    max-width: var(--container-max-width);
-    width: var(--container-width);
+	max-width: var(--container-max-width);
+	width: var(--container-width);
 }
 
 .account {
