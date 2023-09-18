@@ -1,30 +1,30 @@
 .button {
-    padding: 1rem 2rem;
-    border-radius: 50vh;
-    background-color: var(--color-secondary);
-    color: var(--color-primary-900);
-    transition: transform .2s ease;
+	padding: 1rem 2rem;
+	border-radius: 50vh;
+	background-color: var(--color-secondary);
+	color: var(--color-primary-900);
+	transition: transform 0.2s ease;
 }
 
 .button--outline {
-    padding: calc(1rem - 2px) calc(2rem - 2px);
-    background: none;
-    color: var(--color-secondary);
-    border: 2px solid var(--color-secondary);
+	padding: calc(1rem - 2px) calc(2rem - 2px);
+	background: none;
+	color: var(--color-secondary);
+	border: 2px solid var(--color-secondary);
 }
 
 .button--small {
-    padding: .5rem 1rem;
+	padding: 0.5rem 1rem;
 }
 
 .button--small--outline {
-    padding: calc(.5rem - 2px) calc(1rem - 2px);
-    background: none;
-    color: var(--color-secondary);
-    border: 2px solid var(--color-secondary);
+	padding: calc(0.5rem - 2px) calc(1rem - 2px);
+	background: none;
+	color: var(--color-secondary);
+	border: 2px solid var(--color-secondary);
 }
 
 .button:hover,
 .button--outline:hover {
-    transform: scale(1.05);
+	transform: scale(1.05);
 }

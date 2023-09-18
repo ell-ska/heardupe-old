@@ -1,22 +1,22 @@
 form {
-    width: 100%;
-    margin-bottom: 2rem;
+	width: 100%;
+	margin-bottom: 2rem;
 }
 
 form input {
-    width: 100%;
-    padding: 1rem 2rem;
-    border-radius: 50vh;
-    border: none;
-    background-color: var(--color-secondary);
-    color: var(--color-primary-900);
-    appearance: none;
+	width: 100%;
+	padding: 1rem 2rem;
+	border-radius: 50vh;
+	border: none;
+	background-color: var(--color-secondary);
+	color: var(--color-primary-900);
+	appearance: none;
 }
 
 form input::placeholder {
-    color: var(--color-primary-900);
+	color: var(--color-primary-900);
 }
 
 form input:focus-visible {
-    outline: none;
+	outline: none;
 }

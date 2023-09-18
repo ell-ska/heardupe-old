@@ -6,32 +6,32 @@ import './css/variables.css'
 import './css/base.css'
 
 export const metadata = {
-  title: 'Heardupe',
-  description: 'A dupe of Spotify\'s music quiz Heardle',
-  icons: {
-    icon: '/favicon.svg'
-  }
+	title: 'Heardupe',
+	description: "A dupe of Spotify's music quiz Heardle",
+	icons: {
+		icon: '/favicon.svg',
+	},
 }
 
 const lexend = Lexend({
-  subsets: ['latin'],
-  weight: ['400', '700']
+	subsets: ['latin'],
+	weight: ['400', '700'],
 })
 
 const RootLayout = ({ children }) => {
-  return (
-    <html lang="en" className={lexend.className}>
-      <body>
-        <NextAuthProvider>
-          <div className="container">
-            <Header></Header>
-            {children}
-            <Footer></Footer>
-          </div>
-        </NextAuthProvider>
-      </body>
-    </html>
-  )
+	return (
+		<html lang="en" className={lexend.className}>
+			<body>
+				<NextAuthProvider>
+					<div className="container">
+						<Header></Header>
+						{children}
+						<Footer></Footer>
+					</div>
+				</NextAuthProvider>
+			</body>
+		</html>
+	)
 }
 
 export default RootLayout

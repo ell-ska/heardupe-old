@@ -1,8 +1,20 @@
 import Image from 'next/image'
 
-const EndScreen = ({ gameEnded, playlist, levelOutcome, seconds, image, title, artists, release }) => {
+const EndScreen = ({
+	gameEnded,
+	playlist,
+	levelOutcome,
+	seconds,
+	image,
+	title,
+	artists,
+	release,
+}) => {
 	const exclamation = levelOutcome === 'won' ? 'Amazing!' : 'You lost!'
-    const message = levelOutcome === 'won' ? `You got the song from ${seconds} seconds` : 'You can\'t know them all...'
+	const message =
+		levelOutcome === 'won'
+			? `You got the song from ${seconds} seconds`
+			: "You can't know them all..."
 
 	const LevelEndedScreen = () => {
 		return (
@@ -16,7 +28,9 @@ const EndScreen = ({ gameEnded, playlist, levelOutcome, seconds, image, title, a
 					alt={`album cover for ${title}`}
 				></Image>
 				<h4 className="level-ended__song">{title}</h4>
-				<span className="level-ended__artist">{artists.map(artist => artist.name).join(', ')}</span>
+				<span className="level-ended__artist">
+					{artists.map((artist) => artist.name).join(', ')}
+				</span>
 				<span className="level-ended__year">{release}</span>
 			</div>
 		)
@@ -37,9 +51,13 @@ const EndScreen = ({ gameEnded, playlist, levelOutcome, seconds, image, title, a
 					<h3>Good job!</h3>
 					<h2>{playlist.name}</h2>
 					<div className="game-ended__scores">
-						<h4>Score: <span>1 300</span></h4>
+						<h4>
+							Score: <span>1 300</span>
+						</h4>
 						<span>|</span>
-						<h4>High Score: <span>5 400</span></h4>
+						<h4>
+							High Score: <span>5 400</span>
+						</h4>
 					</div>
 				</div>
 			</div>

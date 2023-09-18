@@ -29,19 +29,27 @@ const Search = () => {
 
 	return (
 		<div className="search">
-			<div className="search__inner">
-				<form action="post" className="search__bar">
-					<input
-						type="text"
-						value={search}
-						onChange={e => setSearch(e.target.value)}
-						placeholder="Search..."
+			<form action="post" className="search__bar">
+				<input
+					type="text"
+					value={search}
+					onChange={(e) => setSearch(e.target.value)}
+					placeholder="Search..."
+				/>
+			</form>
+			<div className="search__results">
+				{searchResults && (
+					<PlaylistSection
+						title="Artists"
+						playlists={searchResults.artists.items}
 					/>
-				</form>
-				<div className="search__results">
-					{searchResults && <PlaylistSection title='Artists' playlists={searchResults.artists.items} />}
-					{searchResults && <PlaylistSection title='Playlists' playlists={searchResults.playlists.items} />}
-				</div>
+				)}
+				{searchResults && (
+					<PlaylistSection
+						title="Playlists"
+						playlists={searchResults.playlists.items}
+					/>
+				)}
 			</div>
 		</div>
 	)

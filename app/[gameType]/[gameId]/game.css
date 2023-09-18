@@ -1,18 +1,19 @@
-.main {
+.game {
+	position: relative;
 	flex: 1 0 auto;
 	display: flex;
 	flex-direction: column;
-}
-
-.game {
-	flex: 1 0 auto;
-	display: grid;
-	grid-template-columns: var(--grid-container);
+	justify-content: space-between;
+	align-items: center;
 	margin-top: 2rem;
+	width: 100%;
 }
 
-.game__inner {
-	grid-column: 2;
+.game__main {
+	margin-bottom: 1.5rem;
+	padding-inline: var(--container-margin);
+	max-width: var(--container-max-width);
+	width: var(--container-width);
 }
 
 .game__guesser {
@@ -35,28 +36,30 @@
 	margin-inline: 2rem;
 }
 
-.game-footer {
-	position: relative;
+.game__buttons {
 	display: flex;
 	justify-content: space-between;
+	margin-bottom: 1.5rem;
+	padding-inline: 1.5rem;
+	width: 100%;
 }
 
-.game-footer .button,
-.game-footer .button--outline {
-	margin: 1.5rem;
+.game__buttons .button,
+.game__buttons .button--outline {
+	text-align: center;
 	white-space: nowrap;
 }
 
 .search-results {
 	position: absolute;
-	top: calc(100% + .5rem);
+	top: calc(100% + 0.5rem);
 	right: 0;
 	left: 0;
 	z-index: -1;
 	display: flex;
 	flex-direction: column;
-	padding: .75rem 0;
-	border-radius: .5rem;
+	padding: 0.75rem 0;
+	border-radius: 0.5rem;
 	background-color: var(--color-primary-800);
 	color: var(--color-primary-500);
 	list-style: none;
@@ -64,7 +67,7 @@
 
 .search-results__song {
 	width: 100%;
-	padding: .75rem 2rem;
+	padding: 0.75rem 2rem;
 	text-align: start;
 }
 
@@ -155,4 +158,34 @@
 
 .game-ended__scores h4 span {
 	font-weight: var(--font-weight-bold);
+}
+
+@media (max-width: 1024px) {
+	.game__main {
+		display: grid;
+		grid-template-rows: min-content min-content 1fr;
+		min-height: calc(100vh - 8.5rem);
+		min-height: calc(100svh - 8.5rem);
+	}
+
+	.game__buttons {
+		justify-content: center;
+		gap: 1rem;
+		max-width: var(--container-max-width);
+		width: var(--container-width);
+	}
+
+	.game__buttons .button {
+		flex: 1 0 auto;
+	}
+}
+
+@media (max-width: 768px) {
+	.game__score {
+		display: none;
+	}
+
+	.game__buttons {
+		flex-direction: column;
+	}
 }

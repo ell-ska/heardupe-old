@@ -7,7 +7,10 @@ const gameOver = ({ outcome, currentScore, statistics }) => {
 
 	const newGameStats = {
 		totalScore: statistics.totalScore + currentScore,
-		highScore: currentScore >= statistics.highScore ? currentScore : statistics.highScore,
+		highScore:
+			currentScore >= statistics.highScore
+				? currentScore
+				: statistics.highScore,
 		gamesPlayed: statistics.gamesPlayed + 1,
 	}
 
