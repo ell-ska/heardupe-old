@@ -10,6 +10,8 @@
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+	padding-inline: 2rem;
+	text-align: center;
 }
 
 .not-found__inner img {

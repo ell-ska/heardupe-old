@@ -34,4 +34,20 @@
 
 .login__branding span {
 	font-size: var(--font-size-4);
+	line-height: 1;
+}
+
+@media (max-width: 768px) {
+	.login__branding {
+		flex-direction: column;
+		gap: 0.5rem;
+	}
+
+	.login__branding h2 {
+		font-size: var(--font-size-5);
+	}
+
+	.login__branding span {
+		font-size: var(--font-size-3);
+	}
 }
