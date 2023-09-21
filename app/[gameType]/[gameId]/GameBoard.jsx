@@ -121,6 +121,7 @@ const GameBoard = ({ playlist, tracks, type }) => {
 			setStatistics(newStatistics)
 		} else {
 			setLevel((prev) => prev + 1)
+			resetGame()
 		}
 	}
 
