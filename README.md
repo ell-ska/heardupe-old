@@ -1,6 +1,5 @@
 # Heardupe
-
-_Heardupe is an innovative music game highly inspired by Spotify's Heardle._
+This is the old version of Heardupe! The new one is found [here](https://github.com/ell-ska/heardupe).
 
 ## Technologies used
 
